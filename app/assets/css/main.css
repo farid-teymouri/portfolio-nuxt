@@ -1,3 +1,7 @@
 /* assets/css/main.css */
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+html[lang="fa"] body {
+  font-family: "shab", sans-serif;
+}

@@ -1,0 +1,35 @@
+/* assets/css/fonts.css */
+
+@font-face {
+  font-family: "Shabnam";
+  src: url("../fonts/Shabnam-Light.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* بهینه برای بارگذاری سریع */
+}
+
+@font-face {
+  font-family: "Nahid";
+  src: url("../fonts/Nahid.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DMSans";
+  src: url("../fonts/DMSans_18pt-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --font-sans-fa: "Shabnam", sans-serif;
+  --font-sans-en: sans-serif;
+}
+html[dir="rtl"] {
+  font-family: var(--font-sans-fa);
+}
+
+html[dir="ltr"] {
+  font-family: var(--font-sans-en);
+}
