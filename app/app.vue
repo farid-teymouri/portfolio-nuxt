@@ -1,5 +1,5 @@
 <template>
-  <div :dir>
+  <div :dir="dir">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 // pages/projects/index.vue
+const test = "the projects page";
 </script>
 
-<template></template>
+<template>
+  {{ test }}
+</template>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 // pages/index.vue
+const test = "the home page";
 </script>
 
-<template></template>
+<template>
+  {{ test }}
+</template>

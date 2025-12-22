@@ -15,13 +15,13 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
+/* @font-face {
   font-family: "DMSans";
   src: url("../fonts/DMSans_18pt-Medium.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
 :root {
   --font-sans-fa: "Shabnam", sans-serif;
   --font-sans-en: sans-serif;

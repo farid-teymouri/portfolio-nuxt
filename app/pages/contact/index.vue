@@ -1,5 +1,8 @@
 <script setup lang="ts">
 // pages/contact/index.vue
+const test = "the contact page";
 </script>
 
-<template></template>
+<template>
+  {{ test }}
+</template>

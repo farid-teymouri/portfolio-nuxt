@@ -2,11 +2,12 @@
   <div>
     <UContainer>
       <!-- Header will appear on all pages using this layout -->
-      <AppHeader />
-    </UContainer>
 
-    <!-- Main page content -->
-    <slot />
+      <AppHeader />
+
+      <!-- Main page content -->
+      <slot />
+    </UContainer>
 
     <!-- Optional footer in the future -->
   </div>
