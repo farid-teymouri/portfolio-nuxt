@@ -57,7 +57,7 @@ function onOpen(isOpen: boolean) {
       icon: 'i-lucide-search',
       placeholder: locale === 'fa' ? 'جستجو…' : 'Search...',
     }"
-    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated/40 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
+    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
     :ui="{
       content: 'w-34',
       trailing: 'hidden',

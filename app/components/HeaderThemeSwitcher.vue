@@ -72,7 +72,7 @@ function isThemeItem(item: unknown): item is ThemeItem {
       trailingIcon: 'hidden',
       item: 'cursor-pointer hover:text-primary text-center content-center',
     }"
-    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer focus:ring-transparent focus:right-0 hover:text-primary hover:bg-elevated/70 bg-elevated/40 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
+    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer focus:ring-transparent focus:right-0 hover:text-primary hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
   >
     <!-- Leading slot shows only the selected item's icon -->
     <!-- Override the selected item completely -->

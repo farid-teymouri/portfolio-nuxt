@@ -21,7 +21,7 @@ const toggleNavigation = () => {
         :class="[
           'lg:block relative',
           isNavigationOpen
-            ? 'transition-all duration-150 block lg:relative absolute lg:top-0 top-18  bg-muted h-fit lg:py-0 pb-8 z-50'
+            ? 'transition-all duration-150 block lg:relative absolute lg:top-0 top-18  bg-muted h-fit lg:py-0 pb-4 z-50'
             : 'transition-all duration-150 block lg:relative absolute lg:top-0 top-18 bg-transparent lg:z-0 -z-10',
           isNavigationOpen
             ? dir === 'ltr'

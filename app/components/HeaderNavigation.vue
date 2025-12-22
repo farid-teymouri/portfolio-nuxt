@@ -58,7 +58,7 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
         icon: "solar:file-download-broken",
         target: "_blank",
         class:
-          "ring-primary/50 ring-1 rounded-lg cursor-pointer text-muted  lg:mt-0 mt-5 lg:w-fit w-[240] mx-auto ",
+          "ring-primary/50 ring-1 rounded-lg cursor-pointer text-muted lg:text-center text-center lg:mt-0 mt-4 lg:w-fit w-[240] mx-auto ",
         variant: "outline",
         onSelect: (e: Event) => {
           const link = document.createElement("a");
