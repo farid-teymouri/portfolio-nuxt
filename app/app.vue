@@ -1,5 +1,5 @@
 <template>
-  <div :dir="dir">
+  <div :dir="dir" class="py-2">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

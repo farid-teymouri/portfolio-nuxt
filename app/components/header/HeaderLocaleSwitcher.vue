@@ -62,7 +62,7 @@ function onOpen(isOpen: boolean) {
       content: 'w-34',
       trailing: 'hidden',
       trailingIcon: 'hidden',
-      item: 'cursor-pointer content-center justify-center flex',
+      item: 'cursor-pointer content-center justify-center flex hover:bg-elevated rounded-md',
     }"
     @update:open="onOpen"
   >

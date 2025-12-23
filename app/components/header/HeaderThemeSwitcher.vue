@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Import necessary types and composables
 import type { SelectItem } from "@nuxt/ui";
 
 type ThemeItem = {
@@ -8,7 +7,7 @@ type ThemeItem = {
   icon: string;
 };
 type Theme = "system" | "light" | "dark";
-// Define the theme options: System, Light, Dark
+
 const items = ref<ThemeItem[]>([
   {
     label: "System",
@@ -27,29 +26,30 @@ const items = ref<ThemeItem[]>([
   },
 ]);
 
-// Get the color mode composable provided by @nuxtjs/color-mode (integrated in Nuxt UI)
 const colorMode = useColorMode();
 
-// Reactive value for the select component, initialized with current preference
-const value = computed<Theme>({
-  get: () => colorMode.preference as Theme,
-  set: (val) => {
-    colorMode.preference = val;
-  },
+// 使用 ref 来存储值，初始化为 'system' 以确保 SSR 和客户端一致
+const value = ref<Theme>("system");
+
+// 在 mounted 之后才同步颜色模式
+onMounted(() => {
+  // 客户端初始化
+  value.value = colorMode.preference as Theme;
+
+  // 监听值变化
+  watch(value, (newValue) => {
+    colorMode.preference = newValue;
+  });
+
+  // 监听外部变化
+  watch(
+    () => colorMode.preference,
+    (newPref) => {
+      value.value = newPref as Theme;
+    }
+  );
 });
 
-// Watch for changes in the select value and update the color mode preference
-watch(value, (newValue) => {
-  colorMode.preference = newValue;
-});
-
-// Optional: Sync the select value if the preference changes externally (e.g., from another component)
-watch(
-  () => colorMode.preference,
-  (newPref) => {
-    value.value = newPref as Theme;
-  }
-);
 function isThemeItem(item: unknown): item is ThemeItem {
   return (
     typeof item === "object" &&
@@ -70,9 +70,9 @@ function isThemeItem(item: unknown): item is ThemeItem {
       content: 'w-10 text-center content-center',
       trailing: 'hidden',
       trailingIcon: 'hidden',
-      item: 'cursor-pointer hover:text-primary text-center content-center',
+      item: 'cursor-pointer text-center content-center hover:bg-elevated rounded-md',
     }"
-    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer focus:ring-transparent focus:right-0 hover:text-primary hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
+    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer focus:ring-transparent focus:right-0 hover:bg-elevated bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated"
   >
     <!-- Leading slot shows only the selected item's icon -->
     <!-- Override the selected item completely -->
@@ -82,14 +82,14 @@ function isThemeItem(item: unknown): item is ThemeItem {
           items.find((item) => item.value === value)?.icon ||
           'solar:devices-line-duotone'
         "
-        class="h-5 w-10 content-center flex hover:text-primary"
+        class="h-5 w-10 content-center flex"
       />
     </template>
 
     <template #trailing />
     <!-- Custom slot for dropdown items - show only icons with null checking -->
     <template #item="{ item }: { item: ThemeItem }">
-      <div class="flex items-center justify-center w-8 h-8 hover:text-primary">
+      <div class="flex items-center justify-center w-8 h-8">
         <UIcon :name="item.icon" class="w-5 h-5" />
       </div>
     </template>

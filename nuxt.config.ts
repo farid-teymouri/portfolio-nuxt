@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     strategy: "prefix_except_default",
     baseUrl:
       process.env.NODE_ENV === "production"
-        ? "https://faridteymouri.com" // ← دامنه واقعی سایتت رو اینجا بنویس
+        ? "https://faridteymouri.vercel.app" // ← دامنه واقعی سایتت رو اینجا بنویس
         : "http://localhost:3000",
   },
 });

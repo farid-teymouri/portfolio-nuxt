@@ -8,5 +8,18 @@
     "github": "GitHub",
     "resume": "Resume",
     "popover": "Jump to Home Page"
+  },
+  "pages": {
+    "home": {
+      "board": {
+        "bio": "18+ Years in Software Engineering | DevOps & Security Expert",
+        "location": "Iran - Lahijan",
+        "birthday": "9th August 1993",
+        "work-status": "Open to work",
+        "phone-number": "(+98) 935 225 2502",
+        "email-address": "{'senior.farid72@gmail.com'}",
+        "time-country": "(Tehran)"
+      }
+    }
   }
 }

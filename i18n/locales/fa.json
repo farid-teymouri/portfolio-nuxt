@@ -8,5 +8,18 @@
     "github": "گیت هاب",
     "resume": "دانلود رزومه",
     "popover": "پرش به صفحه خانه"
+  },
+  "pages": {
+    "home": {
+      "board": {
+        "bio": "۱۸+ سال تجربه در مهندسی نرم‌افزار ، متخصص DevOps و امنیت",
+        "location": "ایران - لاهیجان",
+        "birthday": "۹ آگوست ۱۹۹۳",
+        "work-status": "آماده همکاری",
+        "phone-number": "(+۹۸) ۹۳۵ ۲۲۵ ۲۵۰۲",
+        "email-address": "{'senior.farid72@gmail.com'}",
+        "time-country": "(تهران)"
+      }
+    }
   }
 }
