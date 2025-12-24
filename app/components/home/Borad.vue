@@ -1,118 +1,84 @@
 <template>
   <div
-    class="flex lg:flex-row flex-col justify-between items-center border-x border-dashed border-muted/80"
+    class="flex lg:flex-row flex-col justify-between items-center border-x border-dashed border-muted/80 relative"
   >
-    <div class="p-2.5 flex flex-wrap w-full">
-      <ul class="flex flex-col gap-2 text-[14px]">
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:terminal-alt-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <span class="cursor-default">
-              {{ $t("pages.home.board.bio") }}
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:emoji-alt-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <span class="cursor-default">
-              {{ $t("pages.home.board.work-status") }}
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:pin-alt-1-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <span class="cursor-default">
-              {{ $t("pages.home.board.location") }}
-            </span>
-          </div>
-        </li>
-
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:phone-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <a href="tel:+989352252502" class="hover:text-primary" dir="ltr">
-              {{ $t("pages.home.board.phone-number") }}
-            </a>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:mail-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <a
-              href="mailto:senior.farid72@gmail.com"
-              class="hover:text-primary"
-              dir="ltr"
-            >
-              {{ $t("pages.home.board.email-address") }}
-            </a>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="material-symbols:male-rounded"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <span class="cursor-default">
-              {{ $t("pages.home.board.birthday") }}
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              icon="si:clock-alt-duotone"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-            <!-- This will display the current time in Tehran in Persian locale -->
-            <span class="cursor-default">{{ tehranTime }}</span>
-            <span class="cursor-default">
-              {{ $t("pages.home.board.time-country") }}
-            </span>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div
-      class="bg-dots flex flex-col justify-between w-full h-full relative overflow-hidden"
+    <motion.div
+      ref="constraintsRef"
+      class="bg-prodots flex flex-col justify-between w-full h-full relative overflow-hidden"
     >
-      <div class="w-fit h-full mx-auto flex items-center min-h-59">
-        <HeaderLogo :width="70" :height="76" />
-      </div>
-    </div>
+      <!-- Draggable item -->
+      <motion.div
+        :animate="{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 180, 180, 0],
+          borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+        }"
+        :transition="{
+          duration: 1,
+          ease: 'easeInOut',
+          times: [0, 0.2, 0.5, 0.8, 1],
+        }"
+        drag
+        :style="{ x, y }"
+        :whileDrag="{ scale: 1.2 }"
+        :dragElastic="0.2"
+        :dragConstraints="constraintsRef"
+        class="w-fit h-full mx-auto flex items-center min-h-59 cursor-grab active:cursor-grabbing"
+      >
+        <HeaderLogo
+          :width="70"
+          :height="76"
+          class="ring-0 focus:ring-transparent focus:ring-0 shadow-none border-0 focus:outline-none"
+        />
+      </motion.div>
+
+      <!-- Reset Button -->
+    </motion.div>
+    <motion.div
+      :whileHover="{ scale: 1.1 }"
+      :whilePress="{ scale: 0.7 }"
+      class="absolute top-4 rtl:right-4 ltr:left-4"
+    >
+      <UButton
+        @click="resetDrag"
+        icon="solar:refresh-circle-line-duotone"
+        size="md"
+        color="neutral"
+        variant="outline"
+        class="shadow-none bg-elevated cursor-pointer"
+      />
+    </motion.div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from "#imports";
-import { useTehranTime } from "~/composables/useTehranTime";
-
 const { t, setLocale } = useI18n();
+import { ref } from "vue";
+import { motion, useMotionValue } from "motion-v";
+import { useDomRef } from "motion-v";
+const constraintsRef = useDomRef();
 
-const { locale } = useI18n();
-const { formattedTime: tehranTime } = useTehranTime(locale);
+const x = useMotionValue(0);
+const y = useMotionValue(0);
+
+const resetDrag = () => {
+  x.set(0);
+  y.set(0);
+};
 </script>
+<style scoped>
+.container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #8df0cc;
+  border-radius: 10px;
+}
+</style>
