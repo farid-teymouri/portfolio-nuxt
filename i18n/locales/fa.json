@@ -19,6 +19,19 @@
         "phone-number": "(+۹۸) ۹۳۵ ۲۲۵ ۲۵۰۲",
         "email-address": "{'senior.farid72@gmail.com'}",
         "time-country": "(تهران)"
+      },
+      "profile": {
+        "short-bio": "من فرید تیموری هستم، متخصص امنیت سایبری و توسعه‌دهنده نرم‌افزار و وب که فعالیت حرفه‌ای خود را از سال ۱۳۸۸ آغاز کردم.",
+        "avatar-alt": "عکس پروفایل",
+        "profile-name": "فرید تیموری",
+        "sentences-1": "مهندس نرم‌افزار Full Stack با تمرکز بر DevOps",
+        "sentences-2": "توسعه‌دهنده Laravel و Nuxt.js",
+        "sentences-3": "تخصص در Docker و کانتینری‌سازی",
+        "sentences-4": "تسلط بر Kubernetes و اورکستریشن",
+        "sentences-5": "خودکارسازی توسعه و CI/CD",
+        "sentences-6": "محیط‌های ابری و زیرساخت به‌عنوان کد (IaC)",
+        "sentences-7": "تخصص در توسعه پایگاه داده و API",
+        "sentences-8": "امنیت، مانیتورینگ و مشاهده‌پذیری"
       }
     }
   }

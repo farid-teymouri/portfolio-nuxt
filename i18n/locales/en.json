@@ -19,6 +19,19 @@
         "phone-number": "(+98) 935 225 2502",
         "email-address": "{'senior.farid72@gmail.com'}",
         "time-country": "(Tehran)"
+      },
+      "profile": {
+        "short-bio": "I am Farid Teymouri, a cybersecurity specialist and software and web developer, who started my career in 2009.",
+        "avatar-alt": "profile photo",
+        "profile-name": "Farid Teymouri",
+        "sentences-1": "Full Stack Software Engineer with DevOps Focus",
+        "sentences-2": "Laravel & Nuxt.js Developer",
+        "sentences-3": "Docker & Containerization Expertise",
+        "sentences-4": "Kubernetes & Orchestration Mastery",
+        "sentences-5": "CI/CD & Development Automation",
+        "sentences-6": "Cloud & Infrastructure as Code (IaC)",
+        "sentences-7": "Database & API Development Skills",
+        "sentences-8": "Security, Monitoring & Observability"
       }
     }
   }

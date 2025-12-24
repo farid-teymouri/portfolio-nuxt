@@ -6,7 +6,7 @@
       <div class="rounded-full border border-dashed border-muted">
         <NuxtImg
           src="/images/farid-teymouri.webp"
-          alt="لوگو شخصی FF"
+          :alt="t('pages.home.profile.avatar-alt')"
           width="140"
           height="140"
           format="webp"
@@ -21,8 +21,11 @@
         class="h-full flex flex-col gap-2 border-b border-dashed border-muted/80 p-2.5 px-4"
       >
         <div class="flex flex-row gap-2 items-center">
-          <span class="lg:text-2xl md:text-2xl text-lg font-sans" ref="textRef"
-            >Farid Teymouri</span
+          <span
+            class="lg:text-2xl md:text-2xl text-lg ltr:font-sans"
+            ref="textRef"
+          >
+            {{ $t("pages.home.profile.profile-name") }}</span
           >
           <UIcon
             name="si:verified-fill"
@@ -42,19 +45,18 @@
           >
             <UIcon
               name="ic:outline-volume-up"
-              class="lg:size-4 size-3 text-muted h-full block cursor-pointer"
+              class="lg:size-4 size-3 text-muted block cursor-pointer"
             />
           </motion.div>
         </div>
         <div class="w-full">
           <span class="text-sm">
-            من فرید تیموری، متخصص امنیت سایبری و توسعه‌ دهنده نرم‌ افزار و وب
-            هستم که از سال ۱۳۸۸ فعالیتم آغاز کردم.
+            {{ $t("pages.home.profile.short-bio") }}
           </span>
         </div>
       </div>
       <div class="flex items-center h-fit p-2.5 px-4">
-        <span ref="text">{{ sentences[current] }}</span>
+        <span ref="text" class="w-full text-sm">{{ sentences[current] }}</span>
       </div>
     </div>
   </div>
@@ -63,15 +65,16 @@
 import { ref, onMounted } from "vue";
 import gsap from "gsap";
 import { motion } from "motion-v";
+const { t, setLocale } = useI18n();
 const sentences = [
-  "Full Stack Software Engineer with DevOps Focus",
-  "Laravel & Nuxt.js Developer",
-  "Docker & Containerization Expertise",
-  "Kubernetes & Orchestration Mastery",
-  "CI/CD & Development Automation",
-  "Cloud & Infrastructure as Code (IaC)",
-  "Database & API Development Skills",
-  "Security, Monitoring & Observability",
+  t("pages.home.profile.sentences-1"),
+  t("pages.home.profile.sentences-2"),
+  t("pages.home.profile.sentences-3"),
+  t("pages.home.profile.sentences-4"),
+  t("pages.home.profile.sentences-5"),
+  t("pages.home.profile.sentences-6"),
+  t("pages.home.profile.sentences-7"),
+  t("pages.home.profile.sentences-8"),
 ];
 
 const current = ref(0);

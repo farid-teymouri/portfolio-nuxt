@@ -1,5 +1,9 @@
 <template>
-  <motion.div :whileHover="{ scale: 1.1 }" :whilePress="{ scale: 0.7 }">
+  <motion.div
+    :whileHover="{ scale: 1.1 }"
+    :whilePress="{ scale: 0.7 }"
+    @click="$emit('click')"
+  >
     <UButton
       :icon="
         isOpen
@@ -11,7 +15,6 @@
       :ui="{
         leadingIcon: 'h-full  group-hover:text-primary',
       }"
-      @click="$emit('click')"
     />
   </motion.div>
 </template>
@@ -22,9 +25,3 @@ defineProps<{
 }>();
 defineEmits(["click"]);
 </script>
-
-<!--    :class="
-      isOpen
-        ? 'text-red-500 focus:text-red-500'
-        : 'text-muted focus:text-muted '
-    " -->

@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   image: {
     // Use the default 'ipx' provider (for runtime optimization)
     // Alternatively, use 'ipxStatic' for fully static sites (e.g., with `nuxt generate`)
-    provider: "ipx", // Change to 'ipxStatic' for static builds if needed
+    // provider: "ipxStatic", // Change to 'ipxStatic' for static builds if needed
 
     // // Source directory for local images (default is 'public', included here for clarity)
     // dir: "public",
