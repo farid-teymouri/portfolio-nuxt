@@ -39,13 +39,14 @@ html[lang="fa"] body {
   --ui-text-inverted: white;
   /* Background */
   --ui-bg: var(--ui-color-neutral-50);
+  --ui-bg-segment: var(--ui-color-neutral-50);
   --ui-bg-muted: var(--ui-color-neutral-100);
   --ui-bg-elevated: var(--ui-color-neutral-100);
   --ui-bg-accented: var(--ui-color-neutral-200);
   --ui-bg-inverted: var(--ui-color-neutral-900);
   /* Border */
   --ui-border: var(--ui-color-neutral-200);
-  --ui-border-muted: var(--ui-color-neutral-300);
+  --ui-border-muted: var(--ui-color-neutral-400);
   --ui-border-accented: var(--ui-color-neutral-300);
   --ui-border-inverted: var(--ui-color-neutral-900);
   /* Radius */
@@ -88,6 +89,7 @@ html[lang="fa"] body {
   --ui-text-inverted: var(--ui-color-neutral-900);
   /* Background */
   --ui-bg: var(--ui-color-neutral-900);
+  --ui-bg-segment: var(--ui-color-neutral-900);
   --ui-bg-muted: var(--ui-color-neutral-800);
   --ui-bg-elevated: var(--ui-color-neutral-800);
   --ui-bg-accented: var(--ui-color-neutral-700);
@@ -97,10 +99,29 @@ html[lang="fa"] body {
   --ui-border-muted: var(--ui-color-neutral-600);
   --ui-border-accented: var(--ui-color-neutral-700);
   --ui-border-inverted: white;
+
   /* Radius */
   --ui-radius: 0.25rem;
   /* Container */
   --ui-container: 80rem;
   /* Body */
   @apply antialiased text-default bg-default scheme-light dark:scheme-dark;
+}
+
+.bg-linear {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--ui-border) 0 1px,
+    #0000 0 50%
+  );
+  background-size: 8px 8px;
+}
+.bg-dots {
+  background-image: radial-gradient(
+    circle,
+    var(--ui-border) 1px,
+    transparent 0px
+  );
+  background-size: 8px 8px;
+  background-position: 0px 0px;
 }

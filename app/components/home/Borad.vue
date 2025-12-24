@@ -1,6 +1,8 @@
 <template>
-  <div class="flex lg:flex-row justify-between">
-    <div class="p-2.5 flex flex-wrap">
+  <div
+    class="flex lg:flex-row flex-col justify-between items-center border-x border-dashed border-muted/80"
+  >
+    <div class="p-2.5 flex flex-wrap w-full">
       <ul class="flex flex-col gap-2 text-[14px]">
         <li>
           <div class="flex flex-row gap-2 items-center">
@@ -95,7 +97,13 @@
         </li>
       </ul>
     </div>
-    <div></div>
+    <div
+      class="bg-dots flex flex-col justify-between w-full h-full relative overflow-hidden"
+    >
+      <div class="w-fit h-full mx-auto flex items-center min-h-59">
+        <HeaderLogo :width="70" :height="76" />
+      </div>
+    </div>
   </div>
 </template>
 

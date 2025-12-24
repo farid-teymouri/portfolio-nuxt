@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n, useSwitchLocalePath } from "#imports";
 import { useRouter } from "#app";
-
+import { motion } from "motion-v";
 const { t, setLocale, locale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const router = useRouter();
@@ -46,51 +46,53 @@ function onOpen(isOpen: boolean) {
 </script>
 
 <template>
-  <USelectMenu
-    :arrow="false"
-    v-model="selectedCountry"
-    :items="countries"
-    :loading="status === 'pending'"
-    label-key="name"
-    searchable
-    :search-input="{
-      icon: 'i-lucide-search',
-      placeholder: locale === 'fa' ? 'جستجو…' : 'Search...',
-    }"
-    class="w-fit block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
-    :ui="{
-      content: 'w-34',
-      trailing: 'hidden',
-      trailingIcon: 'hidden',
-      item: 'cursor-pointer content-center justify-center flex hover:bg-elevated rounded-md',
-    }"
-    @update:open="onOpen"
-  >
-    <template #default="{ modelValue }">
-      <div class="flex items-center justify-center">
+  <motion.div :whileHover="{ scale: 1.1 }" :whilePress="{ scale: 0.7 }">
+    <USelectMenu
+      :arrow="false"
+      v-model="selectedCountry"
+      :items="countries"
+      :loading="status === 'pending'"
+      label-key="name"
+      searchable
+      :search-input="{
+        icon: 'i-lucide-search',
+        placeholder: locale === 'fa' ? 'جستجو…' : 'Search...',
+      }"
+      class="w-fit h-full block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
+      :ui="{
+        content: 'w-34',
+        trailing: 'hidden',
+        trailingIcon: 'hidden',
+        item: 'cursor-pointer content-center justify-center flex hover:bg-elevated rounded-md',
+      }"
+      @update:open="onOpen"
+    >
+      <template #default="{ modelValue }">
+        <div class="flex items-center justify-center">
+          <span
+            class="text-md text-center mx-auto px-3 h-5 w-10"
+            style="font-family: Arial, Helvetica, sans-serif"
+          >
+            {{ modelValue?.flag ?? "🌍" }}
+          </span>
+        </div>
+      </template>
+
+      <template #trailing />
+
+      <template #item-leading="{ item }">
+        <span class="size-5 text-center">{{ item.flag }}</span>
+      </template>
+
+      <template #item="{ item }">
+        <span class="size-5 text-center">{{ item.flag }}</span>
         <span
-          class="text-md text-center mx-auto px-3 h-5 w-10"
-          style="font-family: Arial, Helvetica, sans-serif"
+          class="truncate"
+          :style="locale === 'en' ? 'font-family: Shabnam;' : ''"
         >
-          {{ modelValue?.flag ?? "🌍" }}
+          {{ item.name }}
         </span>
-      </div>
-    </template>
-
-    <template #trailing />
-
-    <template #item-leading="{ item }">
-      <span class="size-5 text-center">{{ item.flag }}</span>
-    </template>
-
-    <template #item="{ item }">
-      <span class="size-5 text-center">{{ item.flag }}</span>
-      <span
-        class="truncate"
-        :style="locale === 'en' ? 'font-family: Shabnam;' : ''"
-      >
-        {{ item.name }}
-      </span>
-    </template>
-  </USelectMenu>
+      </template>
+    </USelectMenu>
+  </motion.div>
 </template>

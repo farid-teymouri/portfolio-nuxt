@@ -2,11 +2,26 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxtjs/i18n"],
+  modules: ["@nuxt/ui", "@nuxtjs/i18n", "@nuxt/image", "motion-v/nuxt"],
   css: [
     "~/assets/css/main.css",
     "~/assets/css/fonts.css", // Path to your CSS file
   ],
+  image: {
+    // Use the default 'ipx' provider (for runtime optimization)
+    // Alternatively, use 'ipxStatic' for fully static sites (e.g., with `nuxt generate`)
+    provider: "ipx", // Change to 'ipxStatic' for static builds if needed
+
+    // // Source directory for local images (default is 'public', included here for clarity)
+    // dir: "public",
+
+    // Restrict external domains for security (keep empty to use only local images)
+    domains: [],
+
+    // Additional useful options
+    format: ["webp"], // Support modern image formats for better compression
+    quality: 80, // Default image quality (adjust as needed for balance between size and clarity)
+  },
   i18n: {
     locales: [
       { code: "en", language: "en-US", file: "en.json" },

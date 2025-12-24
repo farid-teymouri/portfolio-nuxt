@@ -2,6 +2,16 @@
 import { useLocalePath } from "#imports";
 
 const localePath = useLocalePath();
+
+interface Props {
+  width?: number;
+  height?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  width: 35,
+  height: 38,
+});
 </script>
 
 <template>
@@ -17,8 +27,8 @@ const localePath = useLocalePath();
         class="group-hover:opacity-75"
         version="1.1"
         id="svg1"
-        width="35"
-        height="38"
+        :width="props.width"
+        :height="props.height"
         viewBox="0 0 216 233"
         sodipodi:docname="ft.svg"
         inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"

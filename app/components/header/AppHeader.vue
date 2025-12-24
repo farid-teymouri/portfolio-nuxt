@@ -11,11 +11,14 @@ const toggleNavigation = () => {
 </script>
 
 <template>
-  <div class="w-full flex flex-row justify-between py-2 px-2.5" :dir="dir">
+  <div
+    class="w-full flex flex-row justify-between lg:py-1.5 px-2.5 py-1"
+    :dir="dir"
+  >
     <div
-      class="w-full flex flex-row justify-start xl:gap-8 lg:gap-6 sm:gap-4 gap-2"
+      class="w-full flex flex-row justify-start xl:gap-8 lg:gap-6 sm:gap-4 gap-2 lg:h-auto h-10"
     >
-      <HeaderLogo />
+      <!-- <HeaderLogo /> -->
       <HeaderNavigation
         :dir="dir"
         :class="[
