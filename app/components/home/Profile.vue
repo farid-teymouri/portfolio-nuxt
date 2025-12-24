@@ -37,17 +37,17 @@
             ref="audio"
             src="/voice/farid-e-teymouri.mp3"
           ></audio>
-          <motion.div
+          <motion.button
             :whileHover="{ scale: 1.1 }"
             :whilePress="{ scale: 0.7 }"
             @click="play"
-            calss="items-center justify-center"
+            calss="items-center justify-center "
           >
             <UIcon
               name="ic:outline-volume-up"
-              class="lg:size-4 size-3 text-muted block cursor-pointer"
+              class="lg:size-5 size-4 text-muted px-3 block cursor-pointer"
             />
-          </motion.div>
+          </motion.button>
         </div>
         <div class="w-full">
           <span class="text-sm">
