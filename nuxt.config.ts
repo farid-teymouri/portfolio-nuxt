@@ -8,16 +8,8 @@ export default defineNuxtConfig({
     "~/assets/css/fonts.css", // Path to your CSS file
   ],
   image: {
-    // Use the default 'ipx' provider (for runtime optimization)
-    // Alternatively, use 'ipxStatic' for fully static sites (e.g., with `nuxt generate`)
-    // provider: "ipxStatic", // Change to 'ipxStatic' for static builds if needed
-
-    // // Source directory for local images (default is 'public', included here for clarity)
-    // dir: "public",
-
     // Restrict external domains for security (keep empty to use only local images)
     domains: [],
-
     // Additional useful options
     format: ["webp"], // Support modern image formats for better compression
     quality: 80, // Default image quality (adjust as needed for balance between size and clarity)
@@ -33,5 +25,11 @@ export default defineNuxtConfig({
       process.env.NODE_ENV === "production"
         ? "https://faridteymouri.vercel.app" // ← دامنه واقعی سایتت رو اینجا بنویس
         : "http://localhost:3000",
+  },
+  runtimeConfig: {
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN || "NOT TOKEN",
+    // public: {
+
+    // },
   },
 });

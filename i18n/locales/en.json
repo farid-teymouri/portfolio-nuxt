@@ -48,5 +48,25 @@
         "item-7": "Creator of Personal Laravel-Nuxt Project (April 2022 – January 2026): I have dedicated over three years to developing my personal, comprehensive project, significantly enhancing my technical and managerial skills. Due to insufficient funding, the project’s launch has been delayed."
       }
     }
+  },
+  "github": {
+    "contributions_in": "contributions in",
+    "contributions_on": "contributions on",
+    "less": "Less",
+    "more": "More",
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
   }
 }

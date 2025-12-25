@@ -1,8 +1,11 @@
 <template>
   <div :dir="dir" class="py-2 ltr:font-sans">
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <UApp>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UApp>
+
     <!-- <NuxtRouteAnnouncer />
     <NuxtWelcome /> -->
   </div>

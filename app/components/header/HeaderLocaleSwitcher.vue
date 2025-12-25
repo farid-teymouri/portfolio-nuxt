@@ -38,11 +38,11 @@ watch(selectedCountry, async (newCountry) => {
 });
 
 // Optional: fallback loading trigger (rarely needed due to immediate: true)
-function onOpen(isOpen: boolean) {
-  if (isOpen && !countries.value?.length) {
-    // Safety net – data should already be loaded
-  }
-}
+// function onOpen(isOpen: boolean) {
+//   if (isOpen && !countries.value?.length) {
+//     // Safety net – data should already be loaded
+//   }
+// }
 </script>
 
 <template>
@@ -65,7 +65,6 @@ function onOpen(isOpen: boolean) {
         trailingIcon: 'hidden',
         item: 'cursor-pointer content-center justify-center flex hover:bg-elevated rounded-md',
       }"
-      @update:open="onOpen"
     >
       <template #default="{ modelValue }">
         <div class="flex items-center justify-center">
