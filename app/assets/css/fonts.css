@@ -24,12 +24,12 @@
 } */
 :root {
   --font-sans-fa: "Shabnam", sans-serif;
-  --font-sans-en: sans-serif;
+  /* --font-sans-en: sans-serif; */
 }
 html[dir="rtl"] {
   font-family: var(--font-sans-fa);
 }
 
-html[dir="ltr"] {
+/* html[dir="ltr"] {
   font-family: var(--font-sans-en);
-}
+} */

@@ -28,8 +28,8 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
       {
         label: t("nav.about"),
         icon: "lets-icons:user-scan-duotone",
-        to: localePath("/about"),
-        active: currentPath.startsWith(localePath("/about")),
+        to: "#about",
+        active: false,
         onSelect: (e: Event) => {
           emit("click");
         },
@@ -52,15 +52,15 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
           emit("click");
         },
       },
-      {
-        label: t("nav.contact"),
-        icon: "lets-icons:phone-duotone",
-        to: localePath("/contact"),
-        active: currentPath.startsWith(localePath("/contact")),
-        onSelect: (e: Event) => {
-          emit("click");
-        },
-      },
+      // {
+      //   label: t("nav.contact"),
+      //   icon: "lets-icons:phone-duotone",
+      //   to: localePath("/contact"),
+      //   active: currentPath.startsWith(localePath("/contact")),
+      //   onSelect: (e: Event) => {
+      //     emit("click");
+      //   },
+      // },
       {
         label: t("nav.github"),
         icon: "i-simple-icons-github",

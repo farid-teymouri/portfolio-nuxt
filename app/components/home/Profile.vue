@@ -56,7 +56,9 @@
         </div>
       </div>
       <div class="flex items-center h-fit p-2.5 px-4">
-        <span ref="text" class="w-full text-sm">{{ sentences[current] }}</span>
+        <span ref="text" class="w-full lg:text-sm text-xs">{{
+          sentences[current]
+        }}</span>
       </div>
     </div>
   </div>

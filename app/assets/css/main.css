@@ -40,7 +40,6 @@ html[lang="fa"] body {
   --ui-text-inverted: white;
   /* Background */
   --ui-bg: var(--ui-color-neutral-50);
-  --ui-bg-norm: var(--ui-color-neutral-50);
   --ui-bg-dots: var(--ui-color-neutral-300);
   --ui-bg-muted: var(--ui-color-neutral-100);
   --ui-bg-elevated: var(--ui-color-neutral-100);
@@ -92,7 +91,6 @@ html[lang="fa"] body {
   --ui-text-inverted: var(--ui-color-neutral-900);
   /* Background */
   --ui-bg: var(--ui-color-neutral-900);
-  --ui-bg-norm: var(--ui-color-neutral-900);
   --ui-bg-dots: var(--ui-color-neutral-700);
   --ui-bg-muted: var(--ui-color-neutral-800);
   --ui-bg-elevated: var(--ui-color-neutral-800);
