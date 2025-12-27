@@ -130,9 +130,11 @@ const osOptions = {
     :options="osOptions"
     @os-scroll="handleScroll"
     :style="maskStyle"
+    dir="ltr"
   >
     <!-- Changelog component -->
     <UChangelogVersions
+      dir="ltr"
       :versions="changelogVersions"
       :ui="{
         root: '',

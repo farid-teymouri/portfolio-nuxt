@@ -1,74 +1,81 @@
 <template>
-  <div class="relative flex flex-col" dir="ltr" :style="[widthClass]">
-    <svg
-      :width="width"
-      :height="height"
-      viewBox="0 0 739 117"
-      class="h-auto relative flex"
-      preserveAspectRatio="xMinYMin meet"
+  <div class="overflow-x-auto w-fit" dir="ltr">
+    <div
+      class="w-full flex flex-col justify-center"
+      dir="ltr"
+      :style="widthClass"
     >
-      <!-- Month labels -->
-      <g transform="translate(25, 15)">
-        <text
-          v-for="(m, i) in months"
-          :key="i"
-          :x="m.x"
-          y="0"
-          font-size="11"
-          fill="#fff"
-        >
-          {{ m.label }}
-        </text>
-      </g>
-
-      <!-- Days grid -->
-      <g transform="translate(25, 25)">
-        <g
-          v-for="(day, i) in days"
-          :key="i"
-          :transform="`translate(${weekIndex(i) * cell}, ${
-            dayIndex(i) * cell
-          })`"
-        >
-          <rect
-            :width="cell - gap"
-            :height="cell - gap"
-            rx="0"
-            ry="0"
-            :fill="color(day.contributionLevel)"
-            class="transition-all duration-75 hover:stroke-primary stroke-1"
-            @mouseenter="showTooltip(day, $event)"
-            @mouseleave="hideTooltip"
-          />
+      <svg
+        :width="width"
+        :height="height"
+        viewBox="0 0 739 117"
+        class="block"
+        dir="ltr"
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <!-- Month labels -->
+        <g transform="translate(25, 15)">
+          <text
+            v-for="(m, i) in months"
+            :key="i"
+            :x="m.x"
+            y="0"
+            font-size="11"
+            fill="#fff"
+          >
+            {{ m.label }}
+          </text>
         </g>
-      </g>
-    </svg>
 
-    <div class="flex flex-row justify-between px-4">
-      <!-- Total contributions display -->
-      <div class="text-sm mt-2" :dir="dir">
-        {{ totalContributions }} {{ $t("github.contributions_in") }} {{ year }}
-      </div>
-
-      <!-- Legend: Client-only to avoid hydration mismatch -->
-      <ClientOnly>
-        <div class="flex items-center mt-2 space-x-1" dir="ltr">
-          <span class="text-sm"> {{ $t("github.less") }}</span>
-          <div
-            v-for="level in [
-              'NONE',
-              'FIRST_QUARTILE',
-              'SECOND_QUARTILE',
-              'THIRD_QUARTILE',
-              'FOURTH_QUARTILE',
-            ]"
-            :key="level"
-            class="w-3 h-3"
-            :style="{ backgroundColor: color(level) }"
-          />
-          <span class="text-sm"> {{ $t("github.more") }}</span>
+        <!-- Days grid -->
+        <g transform="translate(25, 25)">
+          <g
+            v-for="(day, i) in days"
+            :key="i"
+            :transform="`translate(${weekIndex(i) * cell}, ${
+              dayIndex(i) * cell
+            })`"
+          >
+            <rect
+              :width="cell - gap"
+              :height="cell - gap"
+              rx="0"
+              ry="0"
+              :fill="color(day.contributionLevel)"
+              class="transition-all duration-75 hover:stroke-primary stroke-1"
+              @mouseenter="showTooltip(day, $event)"
+              @mouseleave="hideTooltip"
+            />
+          </g>
+        </g>
+      </svg>
+      <div class="flex flex-row justify-between px-4" dir="ltr">
+        <!-- Total contributions display -->
+        <div class="text-sm mt-2" :dir="dir">
+          {{ totalContributions }} {{ $t("github.contributions_in") }}
+          {{ year }}
         </div>
-      </ClientOnly>
+
+        <!-- Legend: Client-only to avoid hydration mismatch -->
+        <ClientOnly>
+          <div class="flex items-center mt-2 space-x-1" dir="ltr">
+            <span class="text-sm"> {{ $t("github.less") }}</span>
+            <div
+              v-for="level in [
+                'NONE',
+                'FIRST_QUARTILE',
+                'SECOND_QUARTILE',
+                'THIRD_QUARTILE',
+                'FOURTH_QUARTILE',
+              ]"
+              :key="level"
+              class="w-3 h-3"
+              :style="{ backgroundColor: color(level) }"
+            />
+            <span class="text-sm"> {{ $t("github.more") }}</span>
+          </div>
+        </ClientOnly>
+      </div>
     </div>
 
     <!-- Professional popover using UTooltip -->
@@ -256,6 +263,6 @@ const hideTooltip = (event?: MouseEvent) => {
   open.value = false;
 };
 
-const widthClass = computed(() => `width:${width}px;`);
+const widthClass = computed(() => `max-width:${width}px;`);
 const heightClass = computed(() => `height:${height}px;`);
 </script>
