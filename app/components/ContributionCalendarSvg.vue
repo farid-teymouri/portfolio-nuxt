@@ -8,7 +8,7 @@
       preserveAspectRatio="xMinYMin meet"
     >
       <!-- Month labels -->
-      <g transform="translate(45, 15)">
+      <g transform="translate(25, 15)">
         <text
           v-for="(m, i) in months"
           :key="i"
@@ -36,6 +36,7 @@
             rx="0"
             ry="0"
             :fill="color(day.contributionLevel)"
+            class="transition-all duration-75 hover:stroke-primary stroke-1"
             @mouseenter="showTooltip(day, $event)"
             @mouseleave="hideTooltip"
           />
@@ -45,27 +46,29 @@
 
     <div class="flex flex-row justify-between px-4">
       <!-- Total contributions display -->
-      <div class="text-sm text-gray-400 mt-2" :dir="dir">
+      <div class="text-sm mt-2" :dir="dir">
         {{ totalContributions }} {{ $t("github.contributions_in") }} {{ year }}
       </div>
 
-      <!-- Legend: Less ... More -->
-      <div class="flex items-center mt-2 space-x-1" dir="ltr">
-        <span class="text-sm text-gray-400"> {{ $t("github.less") }}</span>
-        <div
-          v-for="level in [
-            'NONE',
-            'FIRST_QUARTILE',
-            'SECOND_QUARTILE',
-            'THIRD_QUARTILE',
-            'FOURTH_QUARTILE',
-          ]"
-          :key="level"
-          class="w-3 h-3"
-          :style="{ backgroundColor: color(level) }"
-        />
-        <span class="text-sm text-gray-400"> {{ $t("github.more") }}</span>
-      </div>
+      <!-- Legend: Client-only to avoid hydration mismatch -->
+      <ClientOnly>
+        <div class="flex items-center mt-2 space-x-1" dir="ltr">
+          <span class="text-sm"> {{ $t("github.less") }}</span>
+          <div
+            v-for="level in [
+              'NONE',
+              'FIRST_QUARTILE',
+              'SECOND_QUARTILE',
+              'THIRD_QUARTILE',
+              'FOURTH_QUARTILE',
+            ]"
+            :key="level"
+            class="w-3 h-3"
+            :style="{ backgroundColor: color(level) }"
+          />
+          <span class="text-sm"> {{ $t("github.more") }}</span>
+        </div>
+      </ClientOnly>
     </div>
 
     <!-- Professional popover using UTooltip -->
@@ -73,7 +76,9 @@
       v-model:open="open"
       :reference="virtualReference"
       :content="{ side: 'top', sideOffset: 8, collisionPadding: 8 }"
-      arrow
+      :ui="{
+        content: 'p-5 dark:bg-neutral-700 bg-neutral-50 text-sm',
+      }"
     >
       <!-- Hidden trigger slot (required when using virtual reference) -->
       <template #default>
@@ -82,9 +87,7 @@
 
       <!-- Custom content for professional styling -->
       <template #content>
-        <div
-          class="px-3 py-2 bg-white text-gray-800 rounded-md shadow-md border border-gray-200"
-        >
+        <div class="px-3 py-4 rounded-md">
           {{ currentDay?.contributionCount }}
           {{ $t("github.contributions_on") }}
           {{ currentDay?.date }}
@@ -97,6 +100,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useGithubContributions } from "~/composables/useGithubContributions";
+import { motion } from "motion-v";
 const { t } = useI18n();
 const { locale } = useI18n();
 
@@ -117,14 +121,29 @@ const days = computed(() =>
 
 const weekIndex = (i: number) => Math.floor(i / 7);
 const dayIndex = (i: number) => i % 7;
-
+const colorMode = useColorMode(); // returns a reactive object
 const color = (level: string) =>
   ({
-    NONE: "var(--ui-bg-elevated)", //800
-    FIRST_QUARTILE: "var(--ui-bg-accented)", //700
-    SECOND_QUARTILE: "var(--ui-text-dimmed)", //400
-    THIRD_QUARTILE: "var(--ui-text-toned)", //300
-    FOURTH_QUARTILE: "var(--ui-text)", //200
+    NONE:
+      colorMode.value != "dark"
+        ? "var(--ui-color-neutral-100)"
+        : "var(--ui-bg-elevated)", //800
+    FIRST_QUARTILE:
+      colorMode.value != "dark"
+        ? "var(--ui-color-neutral-200)"
+        : "var(--ui-bg-accented)", //700
+    SECOND_QUARTILE:
+      colorMode.value != "dark"
+        ? "var(--ui-color-neutral-300)"
+        : "var(--ui-text-dimmed)", //400
+    THIRD_QUARTILE:
+      colorMode.value != "dark"
+        ? "var(--ui-color-neutral-400)"
+        : "var(--ui-text-toned)", //300
+    FOURTH_QUARTILE:
+      colorMode.value != "dark"
+        ? "var(--ui-color-neutral-500)"
+        : "var(--ui-text)", //200
   }[level]);
 
 /**
@@ -208,7 +227,19 @@ const virtualReference = ref({
 
 const showTooltip = (day: any, event: MouseEvent) => {
   currentDay.value = day;
-  const target = event.target as HTMLElement;
+
+  const target = event.target as SVGRectElement;
+  const bbox = target.getBBox(); // اندازه و موقعیت واقعی rect
+
+  const cx = bbox.x + bbox.width / 2;
+  const cy = bbox.y + bbox.height / 2;
+  const scale = 1.2;
+
+  target.setAttribute(
+    "transform",
+    `translate(${cx}, ${cy}) scale(${scale}) translate(${-cx}, ${-cy})`
+  );
+
   virtualReference.value = {
     getBoundingClientRect() {
       return target.getBoundingClientRect();
@@ -217,7 +248,11 @@ const showTooltip = (day: any, event: MouseEvent) => {
   open.value = true;
 };
 
-const hideTooltip = () => {
+const hideTooltip = (event?: MouseEvent) => {
+  if (event) {
+    const target = event.target as SVGRectElement;
+    target.setAttribute("transform", ""); // برگردوندن به حالت اولیه
+  }
   open.value = false;
 };
 

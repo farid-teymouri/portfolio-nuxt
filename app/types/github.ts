@@ -23,3 +23,12 @@ export interface ContributionCalendar {
     contributionDays: ContributionDay[];
   }[];
 }
+
+export interface GithubCommit {
+  repo: string; // e.g., "farid-teymouri/portfolio-nuxt"
+  type: "public" | "private"; // repository visibility
+  message: string; // commit message (first line)
+  timestamp: string; // ISO format, e.g., "2025-12-25T15:09:09Z"
+  sha: string; // commit SHA
+  url: string; // direct link to GitHub commit (html_url)
+}

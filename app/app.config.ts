@@ -4,9 +4,10 @@ export default defineAppConfig({
   description: "A Nuxt 3 project",
   ui: {
     colors: {
-      primary: "blue",
-      // secondary: "purple",
-      // neutral: "zinc",
+      primary: "violet",
+    },
+    container: {
+      base: "w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8",
     },
   },
 });

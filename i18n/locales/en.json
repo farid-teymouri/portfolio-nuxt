@@ -67,6 +67,17 @@
       "oct": "Oct",
       "nov": "Nov",
       "dec": "Dec"
+    },
+    "githubActivity": {
+      "title": "Recent GitHub Activity",
+      "loading": "Loading commits...",
+      "empty": "No recent commits found.",
+      "repository": "Repository",
+      "human-time": "ago",
+      "visibility": {
+        "public": "Public",
+        "private": "Private"
+      }
     }
   }
 }
