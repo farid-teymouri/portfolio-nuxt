@@ -1,7 +1,14 @@
 <template>
-  <div class="overflow-x-auto w-fit" dir="ltr">
+  <OverlayScrollbarsComponent
+    class="w-full"
+    ref="osRef"
+    :options="osOptions"
+    @os-scroll="handleScroll"
+    :style="maskStyle"
+    dir="ltr"
+  >
     <div
-      class="w-full flex flex-col justify-center"
+      class="w-fit flex flex-col justify-center"
       dir="ltr"
       :style="widthClass"
     >
@@ -49,33 +56,6 @@
           </g>
         </g>
       </svg>
-      <div class="flex flex-row justify-between px-4" dir="ltr">
-        <!-- Total contributions display -->
-        <div class="text-sm mt-2" :dir="dir">
-          {{ totalContributions }} {{ $t("github.contributions_in") }}
-          {{ year }}
-        </div>
-
-        <!-- Legend: Client-only to avoid hydration mismatch -->
-        <ClientOnly>
-          <div class="flex items-center mt-2 space-x-1" dir="ltr">
-            <span class="text-sm"> {{ $t("github.less") }}</span>
-            <div
-              v-for="level in [
-                'NONE',
-                'FIRST_QUARTILE',
-                'SECOND_QUARTILE',
-                'THIRD_QUARTILE',
-                'FOURTH_QUARTILE',
-              ]"
-              :key="level"
-              class="w-3 h-3"
-              :style="{ backgroundColor: color(level) }"
-            />
-            <span class="text-sm"> {{ $t("github.more") }}</span>
-          </div>
-        </ClientOnly>
-      </div>
     </div>
 
     <!-- Professional popover using UTooltip -->
@@ -101,13 +81,46 @@
         </div>
       </template>
     </UTooltip>
+  </OverlayScrollbarsComponent>
+  <!-- Footer: total contributions and legend -->
+  <div
+    class="flex flex-row justify-between px-4 w-full"
+    :style="widthClass"
+    dir="ltr"
+  >
+    <!-- Total contributions display -->
+    <div class="text-sm mt-2" :dir="dir">
+      {{ totalContributions }} {{ $t("github.contributions_in") }}
+      {{ year }}
+    </div>
+
+    <!-- Legend: Client-only to avoid hydration mismatch -->
+    <ClientOnly>
+      <div class="flex items-center mt-2 space-x-1" dir="ltr">
+        <span class="text-sm"> {{ $t("github.less") }}</span>
+        <div
+          v-for="level in [
+            'NONE',
+            'FIRST_QUARTILE',
+            'SECOND_QUARTILE',
+            'THIRD_QUARTILE',
+            'FOURTH_QUARTILE',
+          ]"
+          :key="level"
+          class="w-3 h-3"
+          :style="{ backgroundColor: color(level) }"
+        />
+        <span class="text-sm"> {{ $t("github.more") }}</span>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useGithubContributions } from "~/composables/useGithubContributions";
-import { motion } from "motion-v";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
+import "overlayscrollbars/styles/overlayscrollbars.css";
 const { t } = useI18n();
 const { locale } = useI18n();
 
@@ -265,4 +278,96 @@ const hideTooltip = (event?: MouseEvent) => {
 
 const widthClass = computed(() => `max-width:${width}px;`);
 const heightClass = computed(() => `height:${height}px;`);
+
+const osRef = ref<InstanceType<typeof OverlayScrollbarsComponent> | null>(null);
+
+const scrollLeft = ref(0);
+const scrollWidth = ref(0);
+const clientWidth = ref(0);
+
+const fade = 98;
+const maskStyle = computed(() => {
+  const EPSILON = 1;
+
+  const atStart = scrollLeft.value <= EPSILON; // نزدیک شروع (چپ)
+  const atEnd =
+    scrollLeft.value + clientWidth.value >= scrollWidth.value - EPSILON; // نزدیک پایان (راست)
+
+  const startMask = atStart ? "black" : "transparent"; // وقتی به اول نرسیدی مشکی باشه
+  const endMask = atEnd ? "black" : "transparent"; // وقتی به آخر رسیدی مشکی باشه
+
+  return {
+    maskImage: `linear-gradient(to right, ${startMask} 0%, black ${fade}px, black calc(100% - ${fade}px), ${endMask} 100%)`,
+    WebkitMaskImage: `linear-gradient(to right, ${startMask} 0%, black ${fade}px, black calc(100% - ${fade}px), ${endMask} 100%)`,
+  };
+});
+
+function handleScroll() {
+  const os = osRef.value?.osInstance?.();
+  if (!os) return;
+
+  const viewport = os.elements().viewport;
+  scrollLeft.value = viewport.scrollLeft;
+  scrollWidth.value = viewport.scrollWidth;
+  clientWidth.value = viewport.clientWidth;
+}
+
+const targetScrollLeft = ref(0);
+let animating = false;
+
+function smoothScroll() {
+  const os = osRef.value?.osInstance?.();
+  if (!os) return;
+
+  const viewport = os.elements().viewport;
+  const diff = targetScrollLeft.value - viewport.scrollLeft;
+
+  if (Math.abs(diff) < 1) {
+    viewport.scrollLeft = targetScrollLeft.value;
+    animating = false;
+    return;
+  }
+
+  viewport.scrollLeft += diff * 0.2; // مقدار 0.2 سرعت انیمیشن را تعیین می‌کند
+  requestAnimationFrame(smoothScroll);
+  scrollLeft.value = viewport.scrollLeft; // برای mask
+}
+
+onMounted(() => {
+  handleScroll();
+
+  const os = osRef.value?.osInstance?.();
+  if (!os) return;
+
+  const viewport = os.elements().viewport;
+
+  const onWheel = (e: WheelEvent) => {
+    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+      targetScrollLeft.value += e.deltaY; // deltaY → scroll افقی
+      e.preventDefault();
+      if (!animating) {
+        animating = true;
+        requestAnimationFrame(smoothScroll);
+      }
+    }
+  };
+
+  viewport.addEventListener("wheel", onWheel, { passive: false });
+
+  onUnmounted(() => {
+    viewport.removeEventListener("wheel", onWheel);
+  });
+});
+
+const osOptions = {
+  scrollbars: {
+    autoHide: "scroll" as const,
+    autoHideDelay: 500,
+    theme: `os-theme-${colorMode.value == "dark" ? "light" : "dark"}`, // ← به جای className
+  },
+  overflow: {
+    x: "scroll" as const, // ← حالا افقی scroll
+    y: "hidden" as const, // ← عمودی مخفی
+  },
+};
 </script>

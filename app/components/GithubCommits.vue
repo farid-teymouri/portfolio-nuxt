@@ -67,7 +67,7 @@ const scrollTop = ref(0);
 const scrollHeight = ref(0);
 const clientHeight = ref(0);
 
-const fade = 38;
+const fade = 98;
 const maskStyle = computed(() => {
   const EPSILON = 1;
 
@@ -99,11 +99,12 @@ onMounted(() => {
 watch(changelogVersions, () => {
   nextTick(() => handleScroll());
 });
+const colorMode = useColorMode();
 const osOptions = {
   scrollbars: {
     autoHide: "scroll" as const,
     autoHideDelay: 500,
-    theme: "os-theme-dark", // ← به جای className
+    theme: `os-theme-${colorMode.value == "dark" ? "light" : "dark"}`, // ← به جای className
   },
   overflow: {
     x: "hidden" as const,
