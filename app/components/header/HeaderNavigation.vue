@@ -43,15 +43,15 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
           emit("click");
         },
       },
-      // {
-      //   label: t("nav.services"),
-      //   icon: "lets-icons:layers-duotone",
-      //   to: localePath("/services"),
-      //   active: currentPath.startsWith(localePath("/services")),
-      //   onSelect: (e: Event) => {
-      //     emit("click");
-      //   },
-      // },
+      {
+        label: t("nav.skills"),
+        icon: "lets-icons:layers-duotone",
+        to: "#skills",
+        active: currentPath.startsWith(localePath("/services")),
+        onSelect: (e: Event) => {
+          emit("click");
+        },
+      },
       // {
       //   label: t("nav.contact"),
       //   icon: "lets-icons:phone-duotone",

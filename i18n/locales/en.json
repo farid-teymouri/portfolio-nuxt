@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "services": "Services",
+    "skills": "Skills",
     "contact": "Contact",
     "github": "GitHub",
     "resume": "Resume",
@@ -46,6 +46,9 @@
         "item-5": "Software Developer for Various Companies and Projects (April 2013 - April 2021): Contributed to accounting software 'holoo' with SQL Server optimizations and API updates; transitioned to freelance short-term projects including CMS plugins, custom CMS designs, and WHMCS modules, focusing on web development.",
         "item-6": "Software Developer at Maral Host Web Hosting (April 2020 - April 2022): Completed three web-focused projects, including CMS development and WHMCS modules; earned an official employer satisfaction certificate.",
         "item-7": "Creator of Personal Laravel-Nuxt Project (April 2022 - January 2026): I have dedicated over three years to developing my personal, comprehensive project, significantly enhancing my technical and managerial skills. Due to insufficient funding, the project’s launch has been delayed."
+      },
+      "skills": {
+        "header": "skills"
       }
     }
   },
