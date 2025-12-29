@@ -1,4 +1,10 @@
 <template>
+  <div
+    class="flex flex-col w-full gap-4 justify-center items-center text-center"
+    v-if="loading"
+  >
+    <SkeletonsContributionCalendarSvg :widthClass="widthClass" />
+  </div>
   <OverlayScrollbarsComponent
     class="w-full"
     ref="osRef"
@@ -6,9 +12,10 @@
     @os-scroll="handleScroll"
     :style="maskStyle"
     dir="ltr"
+    v-if="!loading"
   >
     <div
-      class="w-fit flex flex-col justify-center"
+      class="w-fit flex flex-col justify-center mx-auto"
       dir="ltr"
       :style="widthClass"
     >
@@ -87,6 +94,7 @@
     class="flex flex-row justify-between px-4 w-full"
     :style="widthClass"
     dir="ltr"
+    v-if="!loading"
   >
     <!-- Total contributions display -->
     <div class="text-sm mt-2" :dir="dir">
@@ -126,7 +134,7 @@ const { locale } = useI18n();
 
 const dir = computed(() => (locale.value === "fa" ? "rtl" : "ltr"));
 
-const { calendar, fetchContributions } = useGithubContributions();
+const { calendar, loading, fetchContributions } = useGithubContributions();
 onMounted(fetchContributions);
 
 // Layout

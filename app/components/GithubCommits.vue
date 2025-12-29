@@ -115,13 +115,17 @@ const osOptions = {
 
 <template>
   <!-- Loading state -->
-  <div v-if="loading">Loading commits...</div>
+  <div v-if="loading">
+    <SkeletonsGithubCommits />
+  </div>
 
   <!-- Error state -->
   <div v-else-if="error" class="text-red-500">{{ error }}</div>
 
   <!-- Empty state -->
-  <div v-else-if="!changelogVersions.length">No recent commits found.</div>
+  <div v-else-if="!changelogVersions.length">
+    <SkeletonsGithubCommits />
+  </div>
 
   <!-- Content state -->
   <OverlayScrollbarsComponent

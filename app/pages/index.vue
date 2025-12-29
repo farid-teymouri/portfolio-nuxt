@@ -104,4 +104,10 @@ const test = "the home page";
       <Skills />
     </UContainer>
   </div>
+
+  <div class="border-b border-dashed border-muted md:px-10 px-2 bg-linear h-8">
+    <UContainer class="mx-auto relative px-0!">
+      <Spacer />
+    </UContainer>
+  </div>
 </template>

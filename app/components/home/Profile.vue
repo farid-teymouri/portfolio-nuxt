@@ -5,7 +5,7 @@
     >
       <div class="rounded-full border border-dashed border-muted">
         <NuxtImg
-          src="/images/farid-teymouri.webp"
+          src="/images/image.jpg"
           :alt="t('pages.home.profile.avatar-alt')"
           width="140"
           height="140"

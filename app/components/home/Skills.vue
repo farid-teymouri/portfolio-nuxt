@@ -1,13 +1,15 @@
 <template>
   <div
+    id="skills"
     class="flex flex-col p-4 border-x border-dashed border-muted/80 relative"
   >
     <UCommandPalette
       :groups="groups"
       class="flex-1"
+      :autofocus="false"
       :ui="{
         root: 'min-h-88 h-88 ',
-        input: 'h-12',
+        input: 'h-12  ',
         content: 'h-full flex-1 max-h-67',
         footer: 'h-9',
       }"
@@ -54,7 +56,7 @@
 const toast = useToast();
 const groups = [
   {
-    id: "skills",
+    id: "skills-box",
     items: [
       {
         id: "programing-languages",
