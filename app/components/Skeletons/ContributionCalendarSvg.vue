@@ -7,7 +7,7 @@
   </div>
 
   <div
-    class="flex flex-row justify-between px-4 w-full min-h-50"
+    class="flex flex-row justify-between px-4 w-full max-h-4"
     :style="widthClass"
   >
     <USkeleton class="h-3.5 max-w-16 w-full" />

@@ -21,7 +21,7 @@ html[lang="fa"] body {
   --ui-color-neutral-900: #08080d;
   --ui-color-neutral-950: #06060b;
 
-  --ui-color-primary-400: rgb(124, 97, 155);
+  --ui-color-primary-400: rgb(146, 89, 192);
 
   /* Colors */
   --ui-primary: var(--ui-color-primary-400);
@@ -121,7 +121,7 @@ html[lang="fa"] body {
 .bg-dots {
   background-image: radial-gradient(
     circle,
-    var(--ui-border) 1px,
+    var(--ui-bg-dots) 1px,
     transparent 0px
   );
   background-size: 8px 8px;

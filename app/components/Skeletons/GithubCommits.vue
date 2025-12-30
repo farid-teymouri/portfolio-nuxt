@@ -12,7 +12,7 @@ const lineWidths = Array(7)
 </script>
 
 <template>
-  <div class="flex flex-col gap-3.5">
+  <div class="flex flex-col gap-3.5 min-h-50">
     <USkeleton class="h-3.5 w-full" />
     <USkeleton
       v-for="(width, i) in lineWidths"

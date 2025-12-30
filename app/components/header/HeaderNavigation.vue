@@ -6,6 +6,7 @@ import { useRuntimeConfig } from "#imports";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
+
 const route = useRoute();
 
 const navigationItems = computed<NavigationMenuItem[]>(() => {
@@ -52,15 +53,15 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
           emit("click");
         },
       },
-      // {
-      //   label: t("nav.contact"),
-      //   icon: "lets-icons:phone-duotone",
-      //   to: localePath("/contact"),
-      //   active: currentPath.startsWith(localePath("/contact")),
-      //   onSelect: (e: Event) => {
-      //     emit("click");
-      //   },
-      // },
+      {
+        label: t("nav.blog"),
+        icon: "fa7-solid:blog",
+        to: localePath("/blog"),
+        active: currentPath.startsWith(localePath("/blog")),
+        onSelect: (e: Event) => {
+          emit("click");
+        },
+      },
       {
         label: t("nav.github"),
         icon: "i-simple-icons-github",

@@ -1,129 +1,3 @@
-<template>
-  <div
-    class="flex flex-col w-full gap-4 justify-center items-center text-center"
-    v-if="loading"
-  >
-    <SkeletonsContributionCalendarSvg :widthClass="widthClass" />
-  </div>
-  <OverlayScrollbarsComponent
-    class="w-full"
-    ref="osRef"
-    :options="osOptions"
-    @os-scroll="handleScroll"
-    :style="maskStyle"
-    dir="ltr"
-    v-if="!loading"
-  >
-    <div
-      class="w-fit flex flex-col justify-center mx-auto"
-      dir="ltr"
-      :style="widthClass"
-    >
-      <svg
-        :width="width"
-        :height="height"
-        viewBox="0 0 739 117"
-        class="block"
-        dir="ltr"
-        preserveAspectRatio="xMinYMin meet"
-      >
-        <!-- Month labels -->
-        <g transform="translate(25, 15)">
-          <text
-            v-for="(m, i) in months"
-            :key="i"
-            :x="m.x"
-            y="0"
-            font-size="11"
-            fill="#fff"
-          >
-            {{ m.label }}
-          </text>
-        </g>
-
-        <!-- Days grid -->
-        <g transform="translate(25, 25)">
-          <g
-            v-for="(day, i) in days"
-            :key="i"
-            :transform="`translate(${weekIndex(i) * cell}, ${
-              dayIndex(i) * cell
-            })`"
-          >
-            <rect
-              :width="cell - gap"
-              :height="cell - gap"
-              rx="0"
-              ry="0"
-              :fill="color(day.contributionLevel)"
-              class="transition-all duration-75 hover:stroke-primary stroke-1"
-              @mouseenter="showTooltip(day, $event)"
-              @mouseleave="hideTooltip"
-            />
-          </g>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Professional popover using UTooltip -->
-    <UTooltip
-      v-model:open="open"
-      :reference="virtualReference"
-      :content="{ side: 'top', sideOffset: 8, collisionPadding: 8 }"
-      :ui="{
-        content: 'p-5 dark:bg-neutral-700 bg-neutral-50 text-sm',
-      }"
-    >
-      <!-- Hidden trigger slot (required when using virtual reference) -->
-      <template #default>
-        <span class="hidden" />
-      </template>
-
-      <!-- Custom content for professional styling -->
-      <template #content>
-        <div class="px-3 py-4 rounded-md">
-          {{ currentDay?.contributionCount }}
-          {{ $t("github.contributions_on") }}
-          {{ currentDay?.date }}
-        </div>
-      </template>
-    </UTooltip>
-  </OverlayScrollbarsComponent>
-  <!-- Footer: total contributions and legend -->
-  <div
-    class="flex flex-row justify-between px-4 w-full"
-    :style="widthClass"
-    dir="ltr"
-    v-if="!loading"
-  >
-    <!-- Total contributions display -->
-    <div class="text-sm mt-2" :dir="dir">
-      {{ totalContributions }} {{ $t("github.contributions_in") }}
-      {{ year }}
-    </div>
-
-    <!-- Legend: Client-only to avoid hydration mismatch -->
-    <ClientOnly>
-      <div class="flex items-center mt-2 space-x-1" dir="ltr">
-        <span class="text-sm"> {{ $t("github.less") }}</span>
-        <div
-          v-for="level in [
-            'NONE',
-            'FIRST_QUARTILE',
-            'SECOND_QUARTILE',
-            'THIRD_QUARTILE',
-            'FOURTH_QUARTILE',
-          ]"
-          :key="level"
-          class="w-3 h-3"
-          :style="{ backgroundColor: color(level) }"
-        />
-        <span class="text-sm"> {{ $t("github.more") }}</span>
-      </div>
-    </ClientOnly>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useGithubContributions } from "~/composables/useGithubContributions";
@@ -132,10 +6,10 @@ import "overlayscrollbars/styles/overlayscrollbars.css";
 const { t } = useI18n();
 const { locale } = useI18n();
 
-const dir = computed(() => (locale.value === "fa" ? "rtl" : "ltr"));
-
 const { calendar, loading, fetchContributions } = useGithubContributions();
+loading.value = true;
 onMounted(fetchContributions);
+const dir = computed(() => (locale.value === "fa" ? "rtl" : "ltr"));
 
 // Layout
 const cell = 13;
@@ -379,3 +253,131 @@ const osOptions = {
   },
 };
 </script>
+
+<template>
+  <div
+    class="flex flex-col w-full gap-4 justify-center items-center text-center"
+    v-if="loading"
+  >
+    <SkeletonsContributionCalendarSvg :widthClass="widthClass" />
+  </div>
+  <OverlayScrollbarsComponent
+    class="w-full hidden"
+    ref="osRef"
+    :options="osOptions"
+    @os-scroll="handleScroll"
+    :style="maskStyle"
+    dir="ltr"
+    v-if="!loading"
+  >
+    <div
+      class="w-fit flex flex-col justify-center mx-auto"
+      dir="ltr"
+      :style="widthClass"
+    >
+      <svg
+        :width="width"
+        :height="height"
+        viewBox="0 0 739 117"
+        class="block"
+        dir="ltr"
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <!-- Month labels -->
+        <g transform="translate(25, 15)">
+          <text
+            v-for="(m, i) in months"
+            :key="i"
+            :x="m.x"
+            y="0"
+            font-size="11"
+            fill="#fff"
+          >
+            {{ m.label }}
+          </text>
+        </g>
+
+        <!-- Days grid -->
+        <g transform="translate(25, 25)">
+          <g
+            v-for="(day, i) in days"
+            :key="i"
+            :transform="`translate(${weekIndex(i) * cell}, ${
+              dayIndex(i) * cell
+            })`"
+          >
+            <rect
+              :width="cell - gap"
+              :height="cell - gap"
+              rx="0"
+              ry="0"
+              :fill="color(day.contributionLevel)"
+              class="transition-all duration-75 hover:stroke-primary stroke-1"
+              @mouseenter="showTooltip(day, $event)"
+              @mouseleave="hideTooltip"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Professional popover using UTooltip -->
+    <UTooltip
+      v-if="!loading"
+      v-model:open="open"
+      :reference="virtualReference"
+      :content="{ side: 'top', sideOffset: 8, collisionPadding: 8 }"
+      :ui="{
+        content: 'p-5 dark:bg-neutral-700 bg-neutral-50 text-sm',
+      }"
+    >
+      <!-- Hidden trigger slot (required when using virtual reference) -->
+      <template #default>
+        <span class="hidden" />
+      </template>
+
+      <!-- Custom content for professional styling -->
+      <template #content v-if="!loading">
+        <div class="px-3 py-4 rounded-md">
+          {{ currentDay?.contributionCount }}
+          {{ $t("github.contributions_on") }}
+          {{ currentDay?.date }}
+        </div>
+      </template>
+    </UTooltip>
+  </OverlayScrollbarsComponent>
+  <!-- Footer: total contributions and legend -->
+  <div
+    class="flex flex-row justify-between px-4 w-full"
+    :style="widthClass"
+    dir="ltr"
+    v-if="!loading"
+  >
+    <ClientOnly>
+      <!-- Total contributions display -->
+      <div class="text-sm mt-2" :dir="dir">
+        {{ totalContributions }} {{ $t("github.contributions_in") }}
+        {{ year }}
+      </div>
+    </ClientOnly>
+    <!-- Legend: Client-only to avoid hydration mismatch -->
+    <ClientOnly>
+      <div class="flex items-center mt-2 space-x-1" dir="ltr">
+        <span class="text-sm"> {{ $t("github.less") }}</span>
+        <div
+          v-for="level in [
+            'NONE',
+            'FIRST_QUARTILE',
+            'SECOND_QUARTILE',
+            'THIRD_QUARTILE',
+            'FOURTH_QUARTILE',
+          ]"
+          :key="level"
+          class="w-3 h-3"
+          :style="{ backgroundColor: color(level) }"
+        />
+        <span class="text-sm"> {{ $t("github.more") }}</span>
+      </div>
+    </ClientOnly>
+  </div>
+</template>

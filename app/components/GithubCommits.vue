@@ -8,12 +8,12 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
 import "overlayscrollbars/styles/overlayscrollbars.css";
 
 const username = "farid-teymouri";
-const { t } = useI18n();
-const { locale } = useI18n();
+
 /**
  * Fetch GitHub commits using the composable
  */
 const { commits, loading, error, fetchCommits } = useGithubCommits(username);
+loading.value = true;
 
 // Trigger fetch when component mounts
 onMounted(fetchCommits);
