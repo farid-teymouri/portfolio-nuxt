@@ -29,23 +29,23 @@ const color = (level: string) =>
     NONE:
       colorMode.value != "dark"
         ? "var(--ui-color-neutral-100)"
-        : "var(--ui-bg-elevated)", //800
+        : "var(--ui-color-neutral-800)", //800
     FIRST_QUARTILE:
       colorMode.value != "dark"
-        ? "var(--ui-color-neutral-200)"
-        : "var(--ui-bg-accented)", //700
+        ? "var(--ui-color-neutral-300)"
+        : "var(--ui-color-neutral-600)", //700
     SECOND_QUARTILE:
       colorMode.value != "dark"
-        ? "var(--ui-color-neutral-300)"
-        : "var(--ui-text-dimmed)", //400
+        ? "var(--ui-color-neutral-400)"
+        : "var(--ui-color-neutral-400)", //400
     THIRD_QUARTILE:
       colorMode.value != "dark"
-        ? "var(--ui-color-neutral-400)"
-        : "var(--ui-text-toned)", //300
+        ? "var(--ui-color-neutral-500)"
+        : "var(--ui-color-neutral-200)", //300
     FOURTH_QUARTILE:
       colorMode.value != "dark"
-        ? "var(--ui-color-neutral-500)"
-        : "var(--ui-text)", //200
+        ? "var(--ui-color-neutral-600)"
+        : "var(--ui-color-neutral-50)", //200
   }[level]);
 
 /**

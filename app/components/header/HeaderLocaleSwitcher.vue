@@ -1,93 +1,101 @@
 <script setup lang="ts">
-import { useI18n, useSwitchLocalePath } from "#imports";
-import { useRouter } from "#app";
 import { motion } from "motion-v";
-const { t, setLocale, locale } = useI18n();
+
+// Country interface matching the API response
+interface Country {
+  name: string;
+  code: "en" | "fa"; // Extend if more locales are added
+  flag: string;
+}
+
+// Fetch countries list (static JSON)
+const { data: countries, status } = await useLazyFetch<Country[]>(
+  "/api/countries.json"
+);
+
+// Reactive reference for the selected country (full object)
+const selectedCountry = ref<Country | undefined>(undefined);
+
+// i18n composables
+const { locale, setLocale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const router = useRouter();
 const route = useRoute();
-// Fetch countries list
-const { data: countries, status } = await useLazyFetch<
-  { name: string; code: string; flag: string }[]
->("/api/countries.json", { immediate: true });
 
-// Selected country ref
-const selectedCountry = ref<
-  { name: string; code: string; flag: string } | undefined
->(undefined);
-
-// Set initial country based on current locale
+// Initialize selected country based on current locale once data is available
 watchEffect(() => {
-  if (countries.value?.length && selectedCountry.value === undefined) {
+  if (countries.value && selectedCountry.value === undefined) {
     selectedCountry.value =
       countries.value.find((c) => c.code === locale.value) ??
-      countries.value[0] ??
-      undefined;
+      countries.value[0];
   }
 });
 
-// Handle locale switching when selection changes
+// Handle locale change when a new country is selected
 watch(selectedCountry, async (newCountry) => {
   if (newCountry && newCountry.code !== locale.value) {
-    const targetPath = switchLocalePath(newCountry.code as "en" | "fa");
-    if (route.fullPath !== targetPath) {
-      await setLocale(newCountry.code as "en" | "fa");
-      router.push(targetPath);
+    // Update locale (persists cookie and triggers i18n updates)
+    await setLocale(newCountry.code);
+
+    // Compute the equivalent path in the new locale
+    const targetPath = switchLocalePath(newCountry.code);
+
+    // Navigate only if the path differs (prevents unnecessary reloads)
+    if (targetPath && route.fullPath !== targetPath) {
+      await router.push(targetPath);
     }
   }
 });
 
-// Optional: fallback loading trigger (rarely needed due to immediate: true)
-// function onOpen(isOpen: boolean) {
-//   if (isOpen && !countries.value?.length) {
-//     // Safety net – data should already be loaded
-//   }
-// }
+// Utility to retrieve the currently selected flag with fallback
+function getSelectedFlag(): string {
+  return selectedCountry.value?.flag ?? "🌍";
+}
 </script>
 
 <template>
-  <motion.div :whileHover="{ scale: 1.1 }" :whilePress="{ scale: 0.7 }">
+  <!-- Motion wrapper for subtle hover and tap animations -->
+  <motion.div
+    :whileHover="{ scale: 1.1 }"
+    :whileTap="{ scale: 1.9 }"
+    class="inline-block"
+  >
+    <!-- Flag-only select menu for language/country switching -->
     <USelectMenu
-      :arrow="false"
       v-model="selectedCountry"
       :items="countries"
       :loading="status === 'pending'"
-      label-key="name"
       searchable
-      :search-input="{
-        icon: 'i-lucide-search',
-        placeholder: locale === 'fa' ? 'جستجو…' : 'Search...',
-      }"
-      class="w-fit h-full block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
+      value-attribute="code"
+      option-attribute="name"
+      :searchable-placeholder="locale === 'fa' ? 'جستجو…' : 'Search...'"
       :ui="{
-        content: 'w-34',
+        content: 'w-64',
         trailing: 'hidden',
         trailingIcon: 'hidden',
-        item: 'cursor-pointer content-center justify-center flex hover:bg-elevated rounded-md',
+        item: 'cursor-pointer flex items-center justify-start gap-3 hover:bg-elevated rounded-md py-2',
       }"
+      class="w-fit h-full block p-0 text-center border-0 ring-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated transition-colors data-[state=open]:text-highlighted data-[state=open]:bg-elevated/70"
     >
-      <template #default="{ modelValue }">
-        <div class="flex items-center justify-center">
-          <span
-            class="text-md text-center mx-auto px-3 h-5 w-10"
-            style="font-family: Arial, Helvetica, sans-serif"
-          >
-            {{ modelValue?.flag ?? "🌍" }}
-          </span>
+      <!-- Trigger: Display only the selected flag -->
+      <template #default>
+        <div class="flex items-center justify-center w-10">
+          <span class="text-lg font-sans">{{ getSelectedFlag() }}</span>
         </div>
       </template>
 
+      <!-- Empty trailing slot to fully hide trailing elements -->
       <template #trailing />
 
-      <template #item-leading="{ item }">
-        <span class="size-5 text-center">{{ item.flag }}</span>
-      </template>
-
+      <!-- Dropdown item: Flag + Country name -->
       <template #item="{ item }">
-        <span class="size-5 text-center">{{ item.flag }}</span>
+        <span class="text-lg">{{ item.flag }}</span>
         <span
           class="truncate"
-          :style="locale === 'en' ? 'font-family: Shabnam;' : ''"
+          :style="{
+            'font-family':
+              item.code === 'fa' ? 'Shabnam, sans-serif' : undefined,
+          }"
         >
           {{ item.name }}
         </span>

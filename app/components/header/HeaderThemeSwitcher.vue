@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import type { SelectItem } from "@nuxt/ui";
 import { motion } from "motion-v";
-type ThemeItem = {
-  label: string;
-  value: "system" | "light" | "dark";
-  icon: string;
-};
-type Theme = "system" | "light" | "dark";
+import type { SelectItem } from "@nuxt/ui";
 
-const items = ref<ThemeItem[]>([
+// Define theme options with labels, values, and icons
+const themeItems = [
   {
     label: "System",
     value: "system",
@@ -24,71 +19,80 @@ const items = ref<ThemeItem[]>([
     value: "dark",
     icon: "solar:moon-fog-bold-duotone",
   },
-]);
+] satisfies SelectItem[];
 
+// Type for theme values
+type Theme = "system" | "light" | "dark";
+
+// Access Nuxt color mode composable
 const colorMode = useColorMode();
 
-// 使用 ref 来存储值，初始化为 'system' 以确保 SSR 和客户端一致
-const value = ref<Theme>("system");
+// Reactive value bound to USelect
+const selectedTheme = ref<Theme>("system");
 
-// 在 mounted 之后才同步颜色模式
+// Safely retrieve the icon for the currently selected theme
+function getSelectedIcon(): string {
+  return (
+    themeItems.find((item) => item.value === selectedTheme.value)?.icon ??
+    "solar:devices-line-duotone"
+  );
+}
+
+// Initialize and set up watchers
 onMounted(() => {
-  // 客户端初始化
-  value.value = colorMode.preference as Theme;
+  // Set initial value from stored preference (fallback to 'system')
+  selectedTheme.value = (colorMode.preference ?? "system") as Theme;
 
-  // 监听值变化
-  watch(value, (newValue) => {
+  // Update colorMode when user selects a new theme
+  watch(selectedTheme, (newValue) => {
     colorMode.preference = newValue;
   });
 
-  // 监听外部变化
+  // Update local value if preference changes externally
   watch(
     () => colorMode.preference,
-    (newPref) => {
-      value.value = newPref as Theme;
+    (newPreference) => {
+      selectedTheme.value = (newPreference ?? "system") as Theme;
     }
   );
 });
-
-function isThemeItem(item: unknown): item is ThemeItem {
-  return (
-    typeof item === "object" &&
-    item !== null &&
-    "icon" in item &&
-    "value" in item
-  );
-}
 </script>
 
 <template>
-  <motion.div :whileHover="{ scale: 1.1 }" :whilePress="{ scale: 0.7 }">
+  <!-- Motion wrapper for hover and tap animations -->
+  <motion.div
+    :whileHover="{ scale: 1.1 }"
+    :whileTap="{ scale: 1.9 }"
+    class="block"
+  >
+    <!-- Icon-only select for theme switching -->
     <USelect
-      v-model="value"
-      :items="items"
-      :item-label="() => ''"
+      v-model="selectedTheme"
+      :items="themeItems"
+      value-attribute="value"
       :ui="{
-        content: 'w-10 text-center content-center',
+        content: 'w-10 text-center',
         trailing: 'hidden',
         trailingIcon: 'hidden',
-        item: 'cursor-pointer text-center content-center hover:bg-elevated rounded-md',
+        item: 'cursor-pointer text-center hover:bg-elevated rounded-md py-1',
+        base: 'flex! flex-col items-center  justify-center ',
       }"
-      class="w-fit h-full block p-0 text-center justify-center content-center border-0 ring-0 text-muted cursor-pointer focus:ring-transparent focus:right-0 hover:bg-elevated bg-elevated focus:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated"
+      class="w-fit h-full block p-0 text-center border-0 ring-0 text-muted cursor-pointer focus:ring-0 hover:bg-elevated bg-elevated focus:bg-elevated transition-colors data-[state=open]:text-highlighted data-[state=open]:bg-elevated"
     >
-      <!-- Leading slot shows only the selected item's icon -->
+      <!-- Display only the selected theme's icon in the trigger -->
       <template #default>
         <UIcon
-          :name="
-            items.find((item) => item.value === value)?.icon ||
-            'solar:devices-line-duotone'
-          "
-          class="h-5 w-10 content-center flex"
+          :name="getSelectedIcon()"
+          class="text-md text-center px-3 h-5 w-10 mx-auto"
         />
       </template>
 
+      <!-- Empty trailing slot to fully hide trailing elements -->
       <template #trailing />
-      <!-- Custom slot for dropdown items - show only icons -->
+
+      <!-- Render each dropdown item as a centered icon -->
       <template #item="{ item }">
-        <div class="flex items-center justify-center w-8 h-8">
+        <div class="flex items-center justify-center w-full py-1">
           <UIcon :name="item.icon" class="w-5 h-5" />
         </div>
       </template>
