@@ -5,9 +5,23 @@
   >
     <UCommandPalette
       :dir
-      :fuse="{ fuseOptions: { includeMatches: true } }"
       :placeholder="searchPlaceHolder"
       :groups="groups"
+      :fuse="{
+        resultLimit: 1000,
+        fuseOptions: {
+          ignoreLocation: true,
+          threshold: 0.1,
+          keys: [
+            'label',
+            'suffix',
+            'children.label',
+            'children.suffix',
+            'children.children.label',
+          ],
+        },
+        matchAllWhenSearchEmpty: true,
+      }"
       class="flex-1"
       :autofocus="false"
       :back="{
@@ -25,10 +39,12 @@
         footer:
           'h-9  dark:bg-elevated bg-elevated/90 rounded-b-md flex felx-row items-center',
         item: 'cursor-pointer py-2',
-        itemLabel: 'flex',
+        itemLabel: 'flex gap-2 items-center',
         label:
-          'flex flex-row  w-fit rounded-md px-2 bg-elevated/85 font-normal my-2 mx-2  lg:text-md text-sm',
+          'flex flex-row w-fit rounded-md px-1 py-0.5 bg-accented/85 font-normal my-2 mx-2 lg:text-md text-sm',
         itemTrailingIcon: 'size-5.5 ',
+        itemLabelBase: 'mx-0 text-md  bg-accented/70 px-1 py-0.5 rounded-md',
+        itemLabelSuffix: 'text-sm text-muted ',
       }"
     >
       <template #item="{ item }" :dir>
@@ -37,7 +53,11 @@
           v-if="!item.children"
         >
           <UIcon v-if="item.icon" :name="item.icon" class="size-7" />
-          <div class="">{{ item.label }}</div>
+          <div
+            class="w-fit rounded-md px-1 py-0.5 bg-accented/35 font-normal lg:text-md text-sm font-sans"
+          >
+            {{ item.label }}
+          </div>
           <div class="text-sm text-muted">{{ item.suffix }}</div>
         </div>
       </template>
@@ -191,547 +211,724 @@ const groups = [
     items: [
       {
         id: "programing-languages",
-        label: "Programming Languages",
-        suffix: "Languages used for building applications and systems.",
+        label: t("pages.home.skills.programingLanguages.label"),
+        suffix: t("pages.home.skills.programingLanguages.suffix"),
         children: [
           {
-            label: "JavaScript (ES6+)",
+            label: t(
+              "pages.home.skills.programingLanguages.children.javascript.label"
+            ),
             icon: "skill-icons:javascript",
-            suffix: "Modern JavaScript features and syntax.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.javascript.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "TypeScript",
+            label: t(
+              "pages.home.skills.programingLanguages.children.typescript.label"
+            ),
             icon: "skill-icons:typescript",
-            suffix: "Statically typed superset of JavaScript.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.typescript.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "PHP 8+",
+            label: t(
+              "pages.home.skills.programingLanguages.children.php.label"
+            ),
             icon: `skill-icons:php-${iconColorMode.value}`,
-            suffix: "Server-side scripting language for web development.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.php.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Python",
+            label: t(
+              "pages.home.skills.programingLanguages.children.python.label"
+            ),
             icon: `skill-icons:python-${iconColorMode.value}`,
-            suffix: "High-level language for web, data, and automation.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.python.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "SQL",
+            label: t(
+              "pages.home.skills.programingLanguages.children.sql.label"
+            ),
             icon: `skill-icons:mysql-${iconColorMode.value}`,
-            suffix: "Structured query language for relational databases.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.sql.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "JSON",
+            label: t(
+              "pages.home.skills.programingLanguages.children.json.label"
+            ),
             icon: "logos:json",
-            suffix: "Lightweight data interchange format.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.json.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "XML",
+            label: t(
+              "pages.home.skills.programingLanguages.children.xml.label"
+            ),
             icon: "devicon:xml",
-            suffix: "Markup language for structured data.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.xml.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Bash / Shell Scripting",
+            label: t(
+              "pages.home.skills.programingLanguages.children.bash.label"
+            ),
             icon: `skill-icons:bash-${iconColorMode.value}`,
-            suffix: "Command-line scripting for automation and system tasks.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.bash.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "HTML5",
+            label: t(
+              "pages.home.skills.programingLanguages.children.html.label"
+            ),
             icon: "skill-icons:html",
-            suffix: "Standard markup language for web pages.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.html.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "CSS3",
+            label: t(
+              "pages.home.skills.programingLanguages.children.css.label"
+            ),
             icon: "skill-icons:css",
-            suffix: "Styling language for web content.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.css.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "SCSS / SASS",
+            label: t(
+              "pages.home.skills.programingLanguages.children.scss.label"
+            ),
             icon: "skill-icons:sass",
-            suffix: "CSS preprocessor for cleaner, modular styles.",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.scss.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "front-end",
-        label: "Front-End Frameworks & Libraries",
-        suffix: "UI/UX, Dashboard, Responsive, etc..",
+        label: t("pages.home.skills.frontEnd.label"),
+        suffix: t("pages.home.skills.frontEnd.suffix"),
         children: [
           {
-            label: "Vue.js",
+            label: t("pages.home.skills.frontEnd.children.vue.label"),
             icon: `skill-icons:vuejs-${iconColorMode.value}`,
-            suffix: "Progressive framework for building reactive interfaces.",
+            suffix: t("pages.home.skills.frontEnd.children.vue.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Nuxt.js",
+            label: t("pages.home.skills.frontEnd.children.nuxt.label"),
             icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
-            suffix: "SSR and SSG framework for Vue.js apps.",
+            suffix: t("pages.home.skills.frontEnd.children.nuxt.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Vuex",
+            label: t("pages.home.skills.frontEnd.children.vuex.label"),
             icon: "material-icon-theme:vuex-store",
-            suffix: "State management library for Vue.js.",
+            suffix: t("pages.home.skills.frontEnd.children.vuex.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Pinia",
+            label: t("pages.home.skills.frontEnd.children.pinia.label"),
             icon: `skill-icons:pinia-${iconColorMode.value}`,
-            suffix: "Modern state management library for Vue.js.",
+            suffix: t("pages.home.skills.frontEnd.children.pinia.suffix"),
             kbds: ["0"],
           },
           {
-            label: "jQuery",
+            label: t("pages.home.skills.frontEnd.children.jquery.label"),
             icon: "skill-icons:jquery",
-            suffix: "Legacy DOM manipulation and utilities library.",
+            suffix: t("pages.home.skills.frontEnd.children.jquery.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Vuetify",
+            label: t("pages.home.skills.frontEnd.children.vuetify.label"),
             icon: `skill-icons:vuetify-${iconColorMode.value}`,
-            suffix: "Material Design UI framework for Vue.js.",
+            suffix: t("pages.home.skills.frontEnd.children.vuetify.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Nuxt UI",
+            label: t("pages.home.skills.frontEnd.children.nuxtUI.label"),
             icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
-            suffix: "UI components optimized for Nuxt.js apps.",
+            suffix: t("pages.home.skills.frontEnd.children.nuxtUI.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Chakra UI",
+            label: t("pages.home.skills.frontEnd.children.chakra.label"),
             icon: "devicon:chakraui",
-            suffix: "Accessible component library for Vue/React.",
+            suffix: t("pages.home.skills.frontEnd.children.chakra.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Headless UI",
+            label: t("pages.home.skills.frontEnd.children.headlessUI.label"),
             icon: "logos:headlessui-icon",
-            suffix: "Unstyled, accessible UI components.",
+            suffix: t("pages.home.skills.frontEnd.children.headlessUI.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Quasar",
+            label: t("pages.home.skills.frontEnd.children.quasar.label"),
             icon: "material-icon-theme:quasar",
-            suffix: "Vue.js framework for SPA, SSR, PWA, mobile, desktop apps.",
+            suffix: t("pages.home.skills.frontEnd.children.quasar.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Tailwind CSS",
+            label: t("pages.home.skills.frontEnd.children.tailwind.label"),
             icon: `skill-icons:tailwindcss-${iconColorMode.value}`,
-            suffix: "Utility-first CSS framework with JS integration.",
+            suffix: t("pages.home.skills.frontEnd.children.tailwind.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Bootstrap 5",
+            label: t("pages.home.skills.frontEnd.children.bootstrap.label"),
             icon: "skill-icons:bootstrap",
-            suffix: "Responsive CSS framework for UI components.",
+            suffix: t("pages.home.skills.frontEnd.children.bootstrap.suffix"),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "back-end",
-        label: "Back-End Frameworks & APIs",
-        suffix: "APIs, authentication, and real-time systems.",
+        label: t("pages.home.skills.backEnd.label"),
+        suffix: t("pages.home.skills.backEnd.suffix"),
         children: [
           {
-            label: "Node.js",
+            label: t("pages.home.skills.backEnd.children.node.label"),
             icon: `skill-icons:nodejs-${iconColorMode.value}`,
-            suffix: "JavaScript runtime for server-side applications.",
+            suffix: t("pages.home.skills.backEnd.children.node.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Express.js",
+            label: t("pages.home.skills.backEnd.children.express.label"),
             icon: `skill-icons:expressjs-${iconColorMode.value}`,
-            suffix: "Minimal Node.js web framework for APIs.",
+            suffix: t("pages.home.skills.backEnd.children.express.suffix"),
             kbds: ["0"],
           },
           {
-            label: "NestJS",
+            label: t("pages.home.skills.backEnd.children.nestjs.label"),
             icon: `skill-icons:nestjs-${iconColorMode.value}`,
-            suffix: "Scalable Node.js framework inspired by Angular.",
+            suffix: t("pages.home.skills.backEnd.children.nestjs.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Laravel",
+            label: t("pages.home.skills.backEnd.children.laravel.label"),
             icon: `skill-icons:laravel-${iconColorMode.value}`,
-            suffix: "PHP framework for web applications and APIs.",
+            suffix: t("pages.home.skills.backEnd.children.laravel.suffix"),
             kbds: ["0"],
           },
           {
-            label: "GraphQL",
+            label: t("pages.home.skills.backEnd.children.graphql.label"),
             icon: `skill-icons:graphql-${iconColorMode.value}`,
-            suffix: "Flexible query language for APIs.",
+            suffix: t("pages.home.skills.backEnd.children.graphql.suffix"),
             kbds: ["0"],
           },
           {
-            label: "WebSocket",
+            label: t("pages.home.skills.backEnd.children.websocket.label"),
             icon: "logos:websocket",
-            suffix: "Real-time, bidirectional communication protocol.",
+            suffix: t("pages.home.skills.backEnd.children.websocket.suffix"),
             kbds: ["0"],
           },
           {
-            label: "JWT / OAuth",
+            label: t("pages.home.skills.backEnd.children.auth.label"),
             icon: "logos:jwt-icon",
-            suffix: "Authentication and authorization mechanisms.",
+            suffix: t("pages.home.skills.backEnd.children.auth.suffix"),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "databases-caching",
-        label: "Databases & Caching",
-        suffix: "SQL, NoSQL, caching, performance optimization.",
+        label: t("pages.home.skills.databasesCaching.label"),
+        suffix: t("pages.home.skills.databasesCaching.suffix"),
         children: [
           {
-            label: "MySQL",
+            label: t("pages.home.skills.databasesCaching.children.mysql.label"),
             icon: `skill-icons:mysql-${iconColorMode.value}`,
-            suffix: "Popular open-source relational database.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.mysql.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "MariaDB",
+            label: t(
+              "pages.home.skills.databasesCaching.children.mariadb.label"
+            ),
             icon: "devicon:mariadb-wordmark",
-            suffix: "MySQL-compatible open-source database.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.mariadb.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "PostgreSQL",
+            label: t(
+              "pages.home.skills.databasesCaching.children.postgresql.label"
+            ),
             icon: `skill-icons:postgresql-${iconColorMode.value}`,
-            suffix: "Advanced open-source relational database.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.postgresql.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "MongoDB",
+            label: t(
+              "pages.home.skills.databasesCaching.children.mongodb.label"
+            ),
             icon: "skill-icons:mongodb",
-            suffix: "NoSQL document-oriented database.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.mongodb.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Redis",
+            label: t("pages.home.skills.databasesCaching.children.redis.label"),
             icon: `skill-icons:redis-${iconColorMode.value}`,
-            suffix: "In-memory data store for caching and queues.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.redis.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Firebase (Realtime DB & Auth)",
+            label: t(
+              "pages.home.skills.databasesCaching.children.firebase.label"
+            ),
             icon: "devicon:firebase",
-            suffix: "Realtime database and authentication platform.",
+            suffix: t(
+              "pages.home.skills.databasesCaching.children.firebase.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "orm-data-tools",
-        label: "ORM & Data Tools",
-        suffix: "Data modeling, querying, and search tools.",
+        label: t("pages.home.skills.ormDataTools.label"),
+        suffix: t("pages.home.skills.ormDataTools.suffix"),
         children: [
           {
-            label: "Eloquent ORM",
+            label: t("pages.home.skills.ormDataTools.children.eloquent.label"),
             icon: "devicon:laravel",
-            suffix: "Active Record ORM for Laravel.",
+            suffix: t(
+              "pages.home.skills.ormDataTools.children.eloquent.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Prisma ORM",
+            label: t("pages.home.skills.ormDataTools.children.prisma.label"),
             icon: "skill-icons:prisma",
-            suffix: "Type-safe ORM for Node.js and TypeScript.",
+            suffix: t("pages.home.skills.ormDataTools.children.prisma.suffix"),
             kbds: ["0"],
           },
           {
-            label: "TypeORM",
+            label: t("pages.home.skills.ormDataTools.children.typeorm.label"),
             icon: "devicon:typeorm",
-            suffix: "ORM for TypeScript and JavaScript.",
+            suffix: t("pages.home.skills.ormDataTools.children.typeorm.suffix"),
             kbds: ["0"],
           },
           {
-            label: "ElasticSearch",
+            label: t(
+              "pages.home.skills.ormDataTools.children.elasticsearch.label"
+            ),
             icon: `skill-icons:elasticsearch-${iconColorMode.value}`,
-            suffix: "Distributed search and analytics engine.",
+            suffix: t(
+              "pages.home.skills.ormDataTools.children.elasticsearch.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "devops-infrastructure",
-        label: "DevOps & Infrastructure",
-        suffix:
-          "Tools and practices for deployment, CI/CD, and server management.",
-
+        label: t("pages.home.skills.devopsInfrastructure.label"),
+        suffix: t("pages.home.skills.devopsInfrastructure.suffix"),
         children: [
           {
-            label: "Linux (Ubuntu)",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.linux.label"
+            ),
             icon: `skill-icons:ubuntu-${iconColorMode.value}`,
-            suffix: "Open-source operating system for servers and development.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.linux.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Git (Advanced)",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.git.label"
+            ),
             icon: "skill-icons:git",
-            suffix: "Version control for tracking and managing code changes.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.git.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "GitHub",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.github.label"
+            ),
             icon: `skill-icons:github-${iconColorMode.value}`,
-            suffix:
-              "Platform for hosting and collaborating on Git repositories.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.github.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "GitLab",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.gitlab.label"
+            ),
             icon: `skill-icons:gitlab-${iconColorMode.value}`,
-            suffix: "Git repository management with integrated CI/CD.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.gitlab.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Docker",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.docker.label"
+            ),
             icon: "skill-icons:docker",
-            suffix: "Containerization platform for consistent environments.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.docker.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Docker Compose",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.dockerCompose.label"
+            ),
             icon: "vscode-icons:file-type-dockertest2",
-            suffix:
-              "Tool for defining and running multi-container Docker apps.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.dockerCompose.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "CI/CD Pipelines",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.ciCd.label"
+            ),
             icon: "material-icon-theme:azure-pipelines",
-            suffix: "Automated build, test, and deployment workflows.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.ciCd.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Nginx",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.nginx.label"
+            ),
             icon: "skill-icons:nginx",
-            suffix: "High-performance web server and reverse proxy.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.nginx.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "PM2",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.pm2.label"
+            ),
             icon: "devicon:pm2",
-            suffix: "Production process manager for Node.js applications.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.pm2.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Cloud Deployment",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.cloud.label"
+            ),
             icon: `skill-icons:vercel-${iconColorMode.value}`,
-            suffix:
-              "Deploying applications to cloud platforms (AWS, GCP, Vercel , etc.).",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.cloud.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Server Monitoring",
+            label: t(
+              "pages.home.skills.devopsInfrastructure.children.monitoring.label"
+            ),
             icon: "devicon:datadog",
-            suffix: "Tracking server performance and uptime.",
+            suffix: t(
+              "pages.home.skills.devopsInfrastructure.children.monitoring.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "architecture-design-principles",
-        label: "Architecture & Design Principles",
-        suffix: "Patterns and principles for scalable systems.",
+        label: t("pages.home.skills.architectureDesignPrinciples.label"),
+        suffix: t("pages.home.skills.architectureDesignPrinciples.suffix"),
         children: [
           {
-            label: "SOLID Principles",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.solid.label"
+            ),
             icon: "",
-            suffix: "Core principles for maintainable object-oriented design.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.solid.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Clean Architecture",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.cleanArchitecture.label"
+            ),
             icon: "",
-            suffix: "Separation of concerns and independent layers.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.cleanArchitecture.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Modular Architecture",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.modular.label"
+            ),
             icon: "",
-            suffix: "Independent and reusable application modules.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.modular.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "MVC / MVVM",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.mvc.label"
+            ),
             icon: "",
-            suffix: "Architectural patterns for UI applications.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.mvc.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Domain-Driven Design (DDD)",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.ddd.label"
+            ),
             icon: "",
-            suffix: "Modeling software around business domains.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.ddd.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Microservices",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.microservices.label"
+            ),
             icon: "",
-            suffix: "Distributed services for large-scale systems.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.microservices.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Event-Driven Architecture",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.eventDriven.label"
+            ),
             icon: "",
-            suffix: "Systems built around events and messaging.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.eventDriven.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Scalable System Design",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.scalableDesign.label"
+            ),
             icon: "",
-            suffix: "Designing systems to handle growth and load.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.scalableDesign.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Monorepo Management",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.monorepo.label"
+            ),
             icon: "",
-            suffix: "Managing multiple projects in a single repository.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.monorepo.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Dependency Injection",
+            label: t(
+              "pages.home.skills.architectureDesignPrinciples.children.dependencyInjection.label"
+            ),
             icon: "",
-            suffix: "Decoupling components through inversion of control.",
+            suffix: t(
+              "pages.home.skills.architectureDesignPrinciples.children.dependencyInjection.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "testing-code-quality",
-        label: "Testing & Code Quality",
-        suffix: "Ensuring reliable and maintainable software.",
+        label: t("pages.home.skills.testingCodeQuality.label"),
+        suffix: t("pages.home.skills.testingCodeQuality.suffix"),
         children: [
           {
-            label: "Jest",
+            label: t(
+              "pages.home.skills.testingCodeQuality.children.jest.label"
+            ),
             icon: "skill-icons:jest",
-            suffix:
-              "JavaScript testing framework for unit and integration tests.",
+            suffix: t(
+              "pages.home.skills.testingCodeQuality.children.jest.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "PHPUnit",
+            label: t(
+              "pages.home.skills.testingCodeQuality.children.phpunit.label"
+            ),
             icon: "material-icon-theme:phpunit",
-            suffix: "PHP testing framework for unit and integration tests.",
+            suffix: t(
+              "pages.home.skills.testingCodeQuality.children.phpunit.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Cypress",
+            label: t(
+              "pages.home.skills.testingCodeQuality.children.cypress.label"
+            ),
             icon: `skill-icons:cypress-${iconColorMode.value}`,
-            suffix: "End-to-end testing framework for web apps.",
+            suffix: t(
+              "pages.home.skills.testingCodeQuality.children.cypress.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Playwright",
+            label: t(
+              "pages.home.skills.testingCodeQuality.children.playwright.label"
+            ),
             icon: "devicon:playwright",
-            suffix: "Modern end-to-end testing tool for browsers.",
+            suffix: t(
+              "pages.home.skills.testingCodeQuality.children.playwright.suffix"
+            ),
             kbds: ["0"],
           },
         ],
       },
       {
         id: "tools-utilities",
-        label: "Tools & Utilities",
-        suffix:
-          "General-purpose libraries, development tools, and productivity enhancers.",
+        label: t("pages.home.skills.toolsUtilities.label"),
+        suffix: t("pages.home.skills.toolsUtilities.suffix"),
         children: [
           {
-            label: "Axios",
+            label: t("pages.home.skills.toolsUtilities.children.axios.label"),
             icon: "devicon-plain:axios-wordmark",
-            suffix:
-              "Promise-based HTTP client for API requests in Nuxt/Laravel.",
+            suffix: t("pages.home.skills.toolsUtilities.children.axios.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Postman",
+            label: t("pages.home.skills.toolsUtilities.children.postman.label"),
             icon: "skill-icons:postman",
-            suffix: "API development, testing, and documentation tool.",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.postman.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Insomnia",
+            label: t(
+              "pages.home.skills.toolsUtilities.children.insomnia.label"
+            ),
             icon: "devicon:insomnia",
-            suffix: "Modern alternative to Postman for REST/GraphQL testing.",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.insomnia.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Laravel Sanctum",
+            label: t("pages.home.skills.toolsUtilities.children.sanctum.label"),
             icon: "devicon:laravel-wordmark",
-            suffix: "Lightweight API authentication for SPAs (Nuxt).",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.sanctum.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Inertia.js",
+            label: t("pages.home.skills.toolsUtilities.children.inertia.label"),
             icon: "devicon:inertiajs",
-            suffix:
-              "Seamless server-driven SPA experience with Laravel + Vue/Nuxt.",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.inertia.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "vue-i18n",
+            label: t("pages.home.skills.toolsUtilities.children.i18n.label"),
             icon: "vscode-icons:file-type-vueconfig",
-            suffix: "Internationalization plugin for Nuxt/Vue applications.",
+            suffix: t("pages.home.skills.toolsUtilities.children.i18n.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Sentry",
+            label: t("pages.home.skills.toolsUtilities.children.sentry.label"),
             icon: "skill-icons:sentry",
-            suffix:
-              "Error tracking and performance monitoring (Laravel & Nuxt).",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.sentry.suffix"
+            ),
             kbds: ["0"],
           },
           {
-            label: "Laravel Echo",
+            label: t("pages.home.skills.toolsUtilities.children.echo.label"),
             icon: "devicon:laravel",
-            suffix: "Real-time event broadcasting with Pusher/Socket.io.",
+            suffix: t("pages.home.skills.toolsUtilities.children.echo.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Husky + Lint-staged",
+            label: t("pages.home.skills.toolsUtilities.children.husky.label"),
             icon: "vscode-icons:file-type-husky",
-            suffix: "Git hooks for automated quality checks.",
+            suffix: t("pages.home.skills.toolsUtilities.children.husky.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Figma",
+            label: t("pages.home.skills.toolsUtilities.children.figma.label"),
             icon: `skill-icons:figma-${iconColorMode.value}`,
-            suffix: "Collaborative UI/UX design and prototyping tool.",
+            suffix: t("pages.home.skills.toolsUtilities.children.figma.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Vite",
+            label: t("pages.home.skills.toolsUtilities.children.vite.label"),
             icon: `skill-icons:vite-${iconColorMode.value}`,
-            suffix: "Next-generation frontend build tool (used by Nuxt 3).",
+            suffix: t("pages.home.skills.toolsUtilities.children.vite.suffix"),
             kbds: ["0"],
           },
           {
-            label: "Webpack",
-            icon: `skill-icons:webpack-${iconColorMode.value}`,
-            suffix: "Module bundler (legacy/alternative to Vite).",
-            kbds: ["0"],
-          },
-          {
-            label: "Chart.js",
-            icon: "Chartjs",
-            suffix: "Simple charting library for dashboards.",
-            kbds: ["0"],
-          },
-          {
-            label: "GSAP",
+            id: "gsap",
+            label: t("pages.home.skills.toolsUtilities.children.gsap.label"),
             icon: "simple-icons:gsap",
-            suffix: "Professional-grade animation library.",
+            suffix: t("pages.home.skills.toolsUtilities.children.gsap.suffix"),
+            kbds: ["0"],
+          },
+          {
+            label: t("pages.home.skills.toolsUtilities.children.webpack.label"),
+            icon: `skill-icons:webpack-${iconColorMode.value}`,
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.webpack.suffix"
+            ),
+            kbds: ["0"],
+          },
+          {
+            label: t("pages.home.skills.toolsUtilities.children.chartjs.label"),
+            icon: "Chartjs",
+            suffix: t(
+              "pages.home.skills.toolsUtilities.children.chartjs.suffix"
+            ),
             kbds: ["0"],
           },
         ],
@@ -740,16 +937,16 @@ const groups = [
   },
   {
     id: "latest-projects",
-    label: "Latest Projects",
+    label: t("pages.home.skills.latestProjects.label"),
     items: [
       {
         label: "portfolio-nuxt",
-        suffix: "/projects/portfolio-nuxt",
+        suffix: "",
         icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
       },
       {
         label: "readme.md",
-        suffix: "/docs",
+        suffix: "",
         icon: "i-vscode-icons-file-type-markdown",
       },
     ],

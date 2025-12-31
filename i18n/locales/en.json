@@ -49,7 +49,380 @@
         "item-7": "Creator of Personal Laravel-Nuxt Project (April 2022 - January 2026): I have dedicated over three years to developing my personal, comprehensive project, significantly enhancing my technical and managerial skills. Due to insufficient funding, the project’s launch has been delayed."
       },
       "skills": {
-        "header": "skills"
+        "header": "skills",
+        "programingLanguages": {
+          "label": "Programming Languages",
+          "suffix": "Core languages and formats for application development, web, data processing, and automation.",
+          "children": {
+            "javascript": {
+              "label": "JavaScript",
+              "suffix": "Dynamic scripting language essential for web interactivity and server-side development."
+            },
+            "typescript": {
+              "label": "TypeScript",
+              "suffix": "Statically typed superset of JavaScript that enhances scalability and maintainability."
+            },
+            "php": {
+              "label": "PHP",
+              "suffix": "Server-side scripting language widely used for web development and content management."
+            },
+            "python": {
+              "label": "Python",
+              "suffix": "Versatile high-level language for web applications, data science, automation, and scripting."
+            },
+            "sql": {
+              "label": "SQL",
+              "suffix": "Standard language for managing and querying relational databases."
+            },
+            "json": {
+              "label": "JSON",
+              "suffix": "Lightweight data interchange format for structured data exchange."
+            },
+            "xml": {
+              "label": "XML",
+              "suffix": "Extensible markup language for encoding structured data."
+            },
+            "bash": {
+              "label": "Bash / Shell Scripting",
+              "suffix": "Scripting language for command-line automation and system administration."
+            },
+            "html": {
+              "label": "HTML",
+              "suffix": "Standard markup language for creating and structuring web content."
+            },
+            "css": {
+              "label": "CSS",
+              "suffix": "Style sheet language for designing and laying out web pages."
+            },
+            "scss": {
+              "label": "SCSS / SASS",
+              "suffix": "CSS preprocessors enabling variables, nesting, and modular styling."
+            }
+          }
+        },
+        "frontEnd": {
+          "label": "Front-End Frameworks & Libraries",
+          "suffix": "Modern tools for building responsive, interactive, and performant user interfaces.",
+          "children": {
+            "vue": {
+              "label": "Vue.js",
+              "suffix": "Progressive JavaScript framework for building reactive and component-based user interfaces."
+            },
+            "nuxt": {
+              "label": "Nuxt",
+              "suffix": "Meta-framework for Vue.js supporting server-side rendering, static site generation, and universal applications."
+            },
+            "vuex": {
+              "label": "Vuex",
+              "suffix": "Centralized state management library designed for Vue.js applications."
+            },
+            "pinia": {
+              "label": "Pinia",
+              "suffix": "Intuitive and type-safe state management solution recommended for modern Vue.js projects."
+            },
+            "jquery": {
+              "label": "jQuery",
+              "suffix": "Legacy JavaScript library for DOM manipulation, event handling, and AJAX."
+            },
+            "vuetify": {
+              "label": "Vuetify",
+              "suffix": "Material Design component framework built for Vue.js applications."
+            },
+            "nuxtUI": {
+              "label": "Nuxt UI",
+              "suffix": "Beautiful and customizable UI component library powered by Tailwind CSS for Nuxt applications."
+            },
+            "chakra": {
+              "label": "Chakra UI",
+              "suffix": "Modular and accessible component library supporting Vue and React with styling flexibility."
+            },
+            "headlessUI": {
+              "label": "Headless UI",
+              "suffix": "Completely unstyled, fully accessible UI primitives for Vue and React."
+            },
+            "quasar": {
+              "label": "Quasar",
+              "suffix": "Vue.js framework for building responsive applications across SPA, SSR, PWA, mobile, desktop, and Electron."
+            },
+            "tailwind": {
+              "label": "Tailwind CSS",
+              "suffix": "Utility-first CSS framework for rapidly building custom user interfaces."
+            },
+            "bootstrap": {
+              "label": "Bootstrap 5",
+              "suffix": "Popular responsive CSS framework with pre-built components and grid system."
+            }
+          }
+        },
+        "backEnd": {
+          "label": "Back-End Frameworks & APIs",
+          "suffix": "Server-side technologies, API development, authentication, and real-time communication.",
+          "children": {
+            "node": {
+              "label": "Node.js",
+              "suffix": "Event-driven JavaScript runtime for building scalable server-side applications."
+            },
+            "express": {
+              "label": "Express.js",
+              "suffix": "Fast and minimalist web framework for Node.js, widely used for building RESTful APIs."
+            },
+            "nestjs": {
+              "label": "NestJS",
+              "suffix": "Progressive, TypeScript-based Node.js framework for efficient and scalable server-side applications."
+            },
+            "laravel": {
+              "label": "Laravel",
+              "suffix": "Elegant PHP framework providing robust tools for building modern web applications and APIs."
+            },
+            "graphql": {
+              "label": "GraphQL",
+              "suffix": "Query language for APIs that enables clients to request exactly the data they need."
+            },
+            "websocket": {
+              "label": "WebSocket",
+              "suffix": "Protocol enabling full-duplex, real-time communication between client and server."
+            },
+            "auth": {
+              "label": "JWT / OAuth",
+              "suffix": "Standards for secure authentication (JWT) and authorization (OAuth) in web applications."
+            }
+          }
+        },
+        "databasesCaching": {
+          "label": "Databases & Caching",
+          "suffix": "Relational and non-relational databases, caching solutions, and performance optimization tools.",
+          "children": {
+            "mysql": {
+              "label": "MySQL",
+              "suffix": "Widely-used open-source relational database management system."
+            },
+            "mariadb": {
+              "label": "MariaDB",
+              "suffix": "Community-developed, fully compatible fork of MySQL."
+            },
+            "postgresql": {
+              "label": "PostgreSQL",
+              "suffix": "Powerful, open-source object-relational database system with advanced features."
+            },
+            "mongodb": {
+              "label": "MongoDB",
+              "suffix": "Document-oriented NoSQL database for flexible and scalable data storage."
+            },
+            "redis": {
+              "label": "Redis",
+              "suffix": "High-performance in-memory data structure store used as database, cache, and message broker."
+            },
+            "firebase": {
+              "label": "Firebase Realtime Database & Authentication",
+              "suffix": "Cloud-hosted realtime database and authentication service with client synchronization."
+            }
+          }
+        },
+        "ormDataTools": {
+          "label": "ORM & Data Tools",
+          "suffix": "Object-relational mapping, data modeling, querying, and advanced search solutions.",
+          "children": {
+            "eloquent": {
+              "label": "Eloquent ORM",
+              "suffix": "Active Record implementation ORM for PHP applications."
+            },
+            "prisma": {
+              "label": "Prisma ORM",
+              "suffix": "Next-generation, type-safe ORM for Node.js and TypeScript applications."
+            },
+            "typeorm": {
+              "label": "TypeORM",
+              "suffix": "Flexible ORM supporting both Active Record and Data Mapper patterns in TypeScript and JavaScript."
+            },
+            "elasticsearch": {
+              "label": "Elasticsearch",
+              "suffix": "Distributed, RESTful search and analytics engine based on Lucene."
+            }
+          }
+        },
+        "devopsInfrastructure": {
+          "label": "DevOps & Infrastructure",
+          "suffix": "Tools and practices for automation, deployment, continuous integration/delivery, and infrastructure management.",
+          "children": {
+            "linux": {
+              "label": "Linux",
+              "suffix": "Open-source operating system widely used for servers, development, and production environments."
+            },
+            "git": {
+              "label": "Git",
+              "suffix": "Distributed version control system for tracking code changes and collaboration."
+            },
+            "github": {
+              "label": "GitHub",
+              "suffix": "Cloud-based platform for hosting Git repositories, collaboration, and project management."
+            },
+            "gitlab": {
+              "label": "GitLab",
+              "suffix": "All-in-one platform for Git repository management, CI/CD, and DevOps workflows."
+            },
+            "docker": {
+              "label": "Docker",
+              "suffix": "Platform for developing, shipping, and running applications in containers."
+            },
+            "dockerCompose": {
+              "label": "Docker Compose",
+              "suffix": "Tool for defining and managing multi-container Docker applications using YAML files."
+            },
+            "ciCd": {
+              "label": "CI/CD Pipelines",
+              "suffix": "Automated processes for building, testing, and deploying code changes reliably and frequently."
+            },
+            "nginx": {
+              "label": "Nginx",
+              "suffix": "High-performance web server, reverse proxy, and load balancer."
+            },
+            "pm2": {
+              "label": "PM2",
+              "suffix": "Process manager for Node.js applications with built-in load balancing and monitoring."
+            },
+            "cloud": {
+              "label": "Cloud Deployment",
+              "suffix": "Strategies and tools for deploying and managing applications on cloud providers."
+            },
+            "monitoring": {
+              "label": "Server Monitoring",
+              "suffix": "Tools and techniques for observing performance, health, and resource usage of servers."
+            }
+          }
+        },
+        "architectureDesignPrinciples": {
+          "label": "Architecture & Design Principles",
+          "suffix": "Fundamental patterns and principles for building scalable, maintainable software systems.",
+          "children": {
+            "solid": {
+              "label": "SOLID Principles",
+              "suffix": "Five core principles for robust and maintainable object-oriented design."
+            },
+            "cleanArchitecture": {
+              "label": "Clean Architecture",
+              "suffix": "Layered approach emphasizing separation of concerns and dependency inversion."
+            },
+            "modular": {
+              "label": "Modular Architecture",
+              "suffix": "Designing applications as independent, reusable modules for better organization."
+            },
+            "mvc": {
+              "label": "MVC / MVVM",
+              "suffix": "Separation of data, presentation, and logic in user interface applications."
+            },
+            "ddd": {
+              "label": "Domain-Driven Design (DDD)",
+              "suffix": "Approach to modeling complex software around core business domains."
+            },
+            "microservices": {
+              "label": "Microservices",
+              "suffix": "Decoupled, independently deployable services for large-scale distributed systems."
+            },
+            "eventDriven": {
+              "label": "Event-Driven Architecture",
+              "suffix": "Systems reacting to events via asynchronous messaging for loose coupling."
+            },
+            "scalableDesign": {
+              "label": "Scalable System Design",
+              "suffix": "Principles for building systems that handle increased load and growth efficiently."
+            },
+            "monorepo": {
+              "label": "Monorepo Management",
+              "suffix": "Strategies for maintaining multiple projects in a single repository."
+            },
+            "dependencyInjection": {
+              "label": "Dependency Injection",
+              "suffix": "Inversion of control technique for reducing tight coupling between components."
+            }
+          }
+        },
+        "testingCodeQuality": {
+          "label": "Testing & Code Quality",
+          "suffix": "Tools and practices for ensuring reliable, maintainable, and high-quality software.",
+          "children": {
+            "jest": {
+              "label": "Jest",
+              "suffix": "JavaScript testing framework focused on simplicity, suitable for unit and integration tests."
+            },
+            "phpunit": {
+              "label": "PHPUnit",
+              "suffix": "Unit testing framework for PHP applications."
+            },
+            "cypress": {
+              "label": "Cypress",
+              "suffix": "End-to-end testing framework for modern web applications."
+            },
+            "playwright": {
+              "label": "Playwright",
+              "suffix": "Reliable end-to-end testing tool supporting multiple browsers (Chromium, Firefox, WebKit)."
+            }
+          }
+        },
+        "toolsUtilities": {
+          "label": "Tools & Utilities",
+          "suffix": "General-purpose libraries, development tools, and productivity enhancers.",
+          "children": {
+            "axios": {
+              "label": "Axios",
+              "suffix": "Promise-based HTTP client for API requests in JavaScript applications."
+            },
+            "postman": {
+              "label": "Postman",
+              "suffix": "API development, testing, and documentation tool."
+            },
+            "insomnia": {
+              "label": "Insomnia",
+              "suffix": "Modern alternative to Postman for REST and GraphQL testing."
+            },
+            "sanctum": {
+              "label": "Laravel Sanctum",
+              "suffix": "Lightweight API authentication for single-page applications."
+            },
+            "inertia": {
+              "label": "Inertia.js",
+              "suffix": "Framework for building server-driven single-page applications with Vue, React, or Svelte."
+            },
+            "i18n": {
+              "label": "vue-i18n",
+              "suffix": "Internationalization plugin for Vue.js applications."
+            },
+            "sentry": {
+              "label": "Sentry",
+              "suffix": "Error tracking and performance monitoring across web and mobile applications."
+            },
+            "echo": {
+              "label": "Laravel Echo",
+              "suffix": "JavaScript client for real-time event broadcasting with WebSockets."
+            },
+            "husky": {
+              "label": "Husky + Lint-staged",
+              "suffix": "Git hooks for automated code quality checks and pre-commit validation."
+            },
+            "figma": {
+              "label": "Figma",
+              "suffix": "Collaborative UI/UX design and prototyping tool."
+            },
+            "vite": {
+              "label": "Vite",
+              "suffix": "Next-generation frontend build tool for modern web development."
+            },
+            "webpack": {
+              "label": "Webpack",
+              "suffix": "Module bundler and asset optimization tool for web applications."
+            },
+            "chartjs": {
+              "label": "Chart.js",
+              "suffix": "Simple and flexible charting library for data visualization."
+            },
+            "gsap": {
+              "label": "GSAP",
+              "suffix": "Professional-grade animation library for complex web animations."
+            }
+          }
+        },
+        "latestProjects": {
+          "label": "Latest Projects"
+        }
       }
     }
   },
