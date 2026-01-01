@@ -49,14 +49,16 @@
     >
       <template #item="{ item }" :dir>
         <div
-          class="w-full flex flex-row gap-2 justify-start items-center text-start"
+          class="w-full flex md:flex-row flex-wrap gap-2 justify-start items-center text-start"
           v-if="!item.children"
         >
-          <UIcon v-if="item.icon" :name="item.icon" class="size-7" />
-          <div
-            class="w-fit rounded-md px-1 py-0.5 bg-accented/35 font-normal lg:text-md text-sm font-sans"
-          >
-            {{ item.label }}
+          <div class="w-fit flex flex-row justify-start items-center gap-2">
+            <UIcon v-if="item.icon" :name="item.icon" class="size-7" />
+            <div
+              class="w-fit rounded-md px-1 py-0.5 bg-accented/35 font-normal lg:text-md text-sm font-sans text-nowrap"
+            >
+              {{ item.label }}
+            </div>
           </div>
           <div class="text-sm text-muted">{{ item.suffix }}</div>
         </div>

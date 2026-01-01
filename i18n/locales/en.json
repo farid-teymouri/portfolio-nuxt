@@ -72,7 +72,7 @@
             },
             "go": {
               "label": "Go",
-              "suffix": "Go (Golang) programming language"
+              "suffix": "Efficient, compiled systems programming language designed for concurrency, scalability, and modern infrastructure."
             },
             "sql": {
               "label": "SQL",
