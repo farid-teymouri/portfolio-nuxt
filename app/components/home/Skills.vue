@@ -188,7 +188,7 @@ const toast = useToast();
 const colorMode = useColorMode();
 
 // Effective mode: 'dark' or 'light'
-console.log(colorMode.value); // Outputs 'dark' or 'light'
+// console.log(colorMode.value); // Outputs 'dark' or 'light'
 
 // For convenience, e.g., in conditional logic
 const iconColorMode = computed(() => {
@@ -255,6 +255,14 @@ const groups = [
             kbds: ["0"],
           },
           {
+            label: t("pages.home.skills.programingLanguages.children.go.label"),
+            icon: "skill-icons:golang",
+            suffix: t(
+              "pages.home.skills.programingLanguages.children.go.suffix"
+            ),
+            kbds: ["0"],
+          },
+          {
             label: t(
               "pages.home.skills.programingLanguages.children.sql.label"
             ),
@@ -284,6 +292,7 @@ const groups = [
             ),
             kbds: ["0"],
           },
+
           {
             label: t(
               "pages.home.skills.programingLanguages.children.bash.label"

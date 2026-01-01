@@ -70,6 +70,10 @@
               "label": "Python",
               "suffix": "Versatile high-level language for web applications, data science, automation, and scripting."
             },
+            "go": {
+              "label": "Go",
+              "suffix": "Go (Golang) programming language"
+            },
             "sql": {
               "label": "SQL",
               "suffix": "Standard language for managing and querying relational databases."

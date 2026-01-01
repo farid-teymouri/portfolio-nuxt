@@ -24,28 +24,25 @@
         class="absolute bottom-0 left-0 w-full h-18 pointer-events-none bg-linear-to-b from-black/0 dark:to-neutral-900 to-neutral-50"
       ></div>
     </div>
-    <motion.div
-      :whileHover="{ scale: 1.1 }"
-      :whilePress="{ scale: 0.7 }"
-      class="w-fit mx-auto"
+    <motion.button
+      :whilePress="{ scale: 0.9 }"
+      class="w-full mx-auto shadow-none bg-elevated cursor-pointer mt-2 text-sm h-8 max-w-30 rounded-md flex flex-row gap-1 items-center justify-center"
+      @click="collapsed = !collapsed"
     >
-      <UButton
-        @click="collapsed = !collapsed"
-        :icon="
+      <UIcon
+        :name="
           collapsed
             ? 'solar:double-alt-arrow-down-line-duotone'
             : 'solar:double-alt-arrow-up-line-duotone'
         "
-        size="md"
-        color="neutral"
-        variant="outline"
-        class="shadow-none bg-elevated cursor-pointer mt-2 text-sm"
-      >
+        class="size-4"
+      ></UIcon>
+      <span>
         {{
           collapsed ? $t("pages.home.ele.show-more") : $t("pages.home.ele.hide")
-        }}
-      </UButton>
-    </motion.div>
+        }}</span
+      >
+    </motion.button>
   </div>
 </template>
 
