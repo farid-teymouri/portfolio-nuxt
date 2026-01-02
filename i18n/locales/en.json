@@ -1,4 +1,32 @@
 {
+  "seo": {
+    "siteName": "Portfolio farid teymouri",
+    "developer": "farid teymouri",
+    "og": {
+      "title": "Farid Teymouri – Software Engineer & DevOps Specialist",
+      "description": "Building scalable cloud-native applications and automating infrastructure with modern DevOps practices."
+    },
+    "home": {
+      "title": "Home - farid teymouri",
+      "description": "Welcome to farid teymouri's personal website, where you can find contact information, as well as his projects and articles.",
+      "keywords": "Farid Teymouri, portfolio, software developer, DevOps, cloud solutions, personal website, frontend, backend, fullstack, developer, engineer, Iran, Tehran, tech, programming, coding, web development, software engineering, open source, GitHub, resume, CV, contact"
+    },
+    "services": {
+      "title": "Services – farid teymouri",
+      "description": "End-to-end software development, DevOps automation, and scalable cloud-native solutions tailored to your needs.",
+      "keywords": "software development services, DevOps consulting, cloud solutions, custom software, application development, automation, scalable systems, cloud-native, deployment, infrastructure, CI/CD, system architecture, backend development, frontend development, fullstack services, DevOps automation, cloud migration, microservices, containerization, Kubernetes, Docker, AWS, Azure, Google Cloud, software architecture, system integration, API development, database design, security, monitoring, performance optimization"
+    },
+    "projects": {
+      "title": "Projects – farid teymouri",
+      "description": "Explore my portfolio of innovative software and DevOps projects, showcasing technical depth and real-world impact.",
+      "keywords": "software projects, DevOps projects, cloud projects, web applications, mobile apps, open source projects, GitHub projects, portfolio projects, frontend projects, backend projects, fullstack projects, Node.js projects, React projects, Vue.js projects, Nuxt.js projects, Angular projects, Python projects, Django projects, Flask projects, cloud solutions, AWS projects, Azure projects, Google Cloud projects, Kubernetes projects, Docker projects, CI/CD projects, automation projects, infrastructure projects, microservices projects, API projects, database projects, security projects, monitoring projects, performance optimization projects"
+    },
+    "blog": {
+      "title": "Blog – farid teymouri",
+      "description": "Insightful articles, tutorials, and deep dives into modern software development, DevOps practices, and cloud technologies.",
+      "keywords": "software development blog, DevOps blog, cloud computing blog, programming tutorials, web development articles, software engineering blog, cloud solutions blog, infrastructure blog, automation blog, CI/CD blog, Kubernetes blog, Docker blog, AWS blog, Azure blog, Google Cloud blog, Node.js blog, React blog, Vue.js blog, Nuxt.js blog, Angular blog, Python blog, Django blog, Flask blog, microservices blog, API development blog, database blog, security blog, monitoring blog, performance optimization blog, tech articles, coding tutorials, development best practices, software architecture blog"
+    }
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -26,7 +54,7 @@
         "time-country": "(Tehran)"
       },
       "profile": {
-        "short-bio": "I am Farid Teymouri, a cybersecurity specialist and software and web developer, who started my career in 2009.",
+        "short-bio": "I am farid teymouri, a cybersecurity specialist and software and web developer, who started my career in 2009.",
         "avatar-alt": "profile photo",
         "profile-name": "Farid Teymouri",
         "sentences-1": "Full Stack Developer with DevOps Focus",

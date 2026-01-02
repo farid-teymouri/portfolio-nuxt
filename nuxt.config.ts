@@ -1,8 +1,34 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// nuxt.config.ts
+const fontPath = "/fonts/Shabnam-Light.ttf";
+
 export default defineNuxtConfig({
+  site: {
+    url: (
+      process.env.NUXT_PUBLIC_SITE_URL || "https://faridteymouri.vercel.app"
+    ).trim(),
+  },
+  ogImage: {
+    enabled: true,
+    zeroRuntime: false,
+    fonts: [
+      {
+        name: "Shabnam",
+        path: fontPath,
+        weight: 300,
+        style: "normal",
+      },
+    ],
+  },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxtjs/i18n", "@nuxt/image", "motion-v/nuxt"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/i18n",
+    "@nuxt/image",
+    "motion-v/nuxt",
+    "@nuxtjs/seo",
+    "nuxt-og-image",
+  ],
   css: [
     "~/assets/css/main.css",
     "~/assets/css/fonts.css", // Path to your CSS file

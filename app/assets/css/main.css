@@ -21,10 +21,17 @@ html[lang="fa"] body {
   --ui-color-neutral-900: #08080d;
   --ui-color-neutral-950: #06060b;
 
-  --ui-color-primary-400: rgb(146, 89, 192);
+  /* Primary: Cyber Cerulean */
+  --ui-color-primary-300: #75d4f3; /* Hover / Lighter */
+  --ui-color-primary-400: #3db6db; /* Default / Brand */
+  --ui-color-primary-500: #14a9d6; /* Active / Darker */
+
+  /* Primary Usage */
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-primary-hover: var(--ui-color-primary-300);
+  --ui-primary-active: var(--ui-color-primary-500);
 
   /* Colors */
-  --ui-primary: var(--ui-color-primary-400);
   --ui-secondary: var(--ui-color-secondary-500);
   --ui-success: var(--ui-color-success-500);
   --ui-info: var(--ui-color-info-500);
@@ -72,10 +79,17 @@ html[lang="fa"] body {
   --ui-color-neutral-900: #08080d;
   --ui-color-neutral-950: #06060b;
 
-  --ui-color-primary-400: rgb(124, 97, 155);
+  /* Primary: Cyber Cerulean (slightly desaturated for harmony on white) */
+  --ui-color-primary-300: #75d4f3; /* Same hover — works well */
+  --ui-color-primary-400: #4cc9f0; /* Keep brand consistent */
+  --ui-color-primary-500: #21a7cc; /* Slightly deeper for better contrast */
+
+  /* Primary Usage */
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-primary-hover: var(--ui-color-primary-300);
+  --ui-primary-active: var(--ui-color-primary-500);
 
   /* Colors */
-  --ui-primary: var(--ui-color-primary-400);
   --ui-secondary: var(--ui-color-secondary-400);
   --ui-success: var(--ui-color-success-400);
   --ui-info: var(--ui-color-info-400);
