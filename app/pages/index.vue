@@ -77,67 +77,67 @@ useSeoMeta({
 useHead({
   title: () => getSEOData().title,
   titleTemplate: () => getSEOData().siteName,
-  meta: [
-    { name: "description", content: () => getSEOData().description },
-    { property: "og:title", content: () => getSEOData().ogTitle },
-    { property: "og:description", content: () => getSEOData().ogDescription },
-    { property: "og:type", content: "website" },
-    {
-      property: "og:locale",
-      content: () => (locale.value === "fa" ? "fa_IR" : "en_US"),
-    },
-    {
-      property: "og:url",
-      content: () => `${baseUrl}/${locale.value}`,
-    },
-    {
-      property: "og:site_name",
-      content: () => getSEOData().siteName,
-    },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: () => getSEOData().ogTitle },
-    { name: "twitter:description", content: () => getSEOData().ogDescription },
-    { name: "robots", content: "index, follow" },
-    { name: "author", content: () => developerName.value },
-    { name: "keywords", content: () => getSEOData().keywords },
-  ],
-  link: [
-    {
-      rel: "canonical",
-      href: () => `${baseUrl}/${locale.value}`,
-    },
-    {
-      rel: "alternate",
-      hreflang: "fa",
-      href: () => `${baseUrl}/fa`,
-    },
-    {
-      rel: "alternate",
-      hreflang: "en",
-      href: () => `${baseUrl}/en`,
-    },
-  ],
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: () =>
-        JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: getSEOData().title,
-          description: getSEOData().description,
-          author: {
-            "@type": "Person",
-            name: developerName.value,
-          },
-          url: `${baseUrl}/${locale.value}`,
-          potentialAction: {
-            "@type": "ReadAction",
-            target: `${baseUrl}/${locale.value}`,
-          },
-        }),
-    },
-  ],
+  // meta: [
+  //   { name: "description", content: () => getSEOData().description },
+  //   { property: "og:title", content: () => getSEOData().ogTitle },
+  //   { property: "og:description", content: () => getSEOData().ogDescription },
+  //   { property: "og:type", content: "website" },
+  //   {
+  //     property: "og:locale",
+  //     content: () => (locale.value === "fa" ? "fa_IR" : "en_US"),
+  //   },
+  //   {
+  //     property: "og:url",
+  //     content: () => `${baseUrl}/${locale.value}`,
+  //   },
+  //   {
+  //     property: "og:site_name",
+  //     content: () => getSEOData().siteName,
+  //   },
+  //   { name: "twitter:card", content: "summary_large_image" },
+  //   { name: "twitter:title", content: () => getSEOData().ogTitle },
+  //   { name: "twitter:description", content: () => getSEOData().ogDescription },
+  //   { name: "robots", content: "index, follow" },
+  //   { name: "author", content: () => developerName.value },
+  //   { name: "keywords", content: () => getSEOData().keywords },
+  // ],
+  // link: [
+  //   {
+  //     rel: "canonical",
+  //     href: () => `${baseUrl}/${locale.value}`,
+  //   },
+  //   {
+  //     rel: "alternate",
+  //     hreflang: "fa",
+  //     href: () => `${baseUrl}/fa`,
+  //   },
+  //   {
+  //     rel: "alternate",
+  //     hreflang: "en",
+  //     href: () => `${baseUrl}/en`,
+  //   },
+  // ],
+  // script: [
+  //   {
+  //     type: "application/ld+json",
+  //     innerHTML: () =>
+  //       JSON.stringify({
+  //         "@context": "https://schema.org",
+  //         "@type": "WebSite",
+  //         name: getSEOData().title,
+  //         description: getSEOData().description,
+  //         author: {
+  //           "@type": "Person",
+  //           name: developerName.value,
+  //         },
+  //         url: `${baseUrl}/${locale.value}`,
+  //         potentialAction: {
+  //           "@type": "ReadAction",
+  //           target: `${baseUrl}/${locale.value}`,
+  //         },
+  //       }),
+  //   },
+  // ],
 });
 </script>
 <template>

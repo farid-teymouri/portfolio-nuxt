@@ -391,7 +391,7 @@ const osOptions = {
         black 100%
       );
     "
-    :dir="dir"
+    dir="rtl"
     v-if="!loading"
   >
     <div

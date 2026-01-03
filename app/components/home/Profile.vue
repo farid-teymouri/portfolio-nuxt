@@ -27,10 +27,12 @@
           >
             {{ $t("pages.home.profile.profile-name") }}</span
           >
-          <UIcon
-            name="si:verified-fill"
-            class="lg:size-4 size-3 text-blue-500"
-          />
+          <ClientOnly>
+            <UIcon
+              name="si:verified-fill"
+              class="lg:size-4 size-3 text-blue-500"
+            />
+          </ClientOnly>
           <audio
             controls
             class="hidden"
@@ -43,10 +45,12 @@
             @click="play"
             calss="items-center justify-center "
           >
-            <UIcon
-              name="ic:outline-volume-up"
-              class="lg:size-5 size-4 text-muted px-3 block cursor-pointer"
-            />
+            <ClientOnly>
+              <UIcon
+                name="ic:outline-volume-up"
+                class="lg:size-5 size-4 text-muted px-3 block cursor-pointer"
+              />
+            </ClientOnly>
           </motion.button>
         </div>
         <div class="w-full">

@@ -28,7 +28,14 @@ export default defineNuxtConfig({
     "motion-v/nuxt",
     "@nuxtjs/seo",
     "nuxt-og-image",
+    "nuxt-icon",
   ],
+  icon: {
+    provider: "server", // 👈 critical: disables external API
+    mode: "css",
+    cssLayer: "base",
+    serverBundle: "auto",
+  },
   css: [
     "~/assets/css/main.css",
     "~/assets/css/fonts.css", // Path to your CSS file

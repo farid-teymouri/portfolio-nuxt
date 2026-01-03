@@ -53,13 +53,16 @@
           v-if="!item.children"
         >
           <div class="w-fit flex flex-row justify-start items-center gap-2">
-            <UIcon v-if="item.icon" :name="item.icon" class="size-7" />
+            <!-- Pass iconColorMode down -->
+            <IconWithColorMode :item="item" :iconColorMode="iconColorMode" />
+
             <div
               class="w-fit rounded-md px-1 py-0.5 bg-accented/35 font-normal lg:text-md text-sm font-sans text-nowrap"
             >
               {{ item.label }}
             </div>
           </div>
+
           <div class="text-sm text-muted">{{ item.suffix }}</div>
         </div>
       </template>
@@ -188,13 +191,11 @@ const route = useRoute();
 const toast = useToast();
 
 const colorMode = useColorMode();
-
-// Effective mode: 'dark' or 'light'
-// console.log(colorMode.value); // Outputs 'dark' or 'light'
-
-// For convenience, e.g., in conditional logic
+// Fallback to 'light' during SSR or loading
 const iconColorMode = computed(() => {
-  return colorMode.value === "dark" ? "dark" : "light"; // Fallback to 'light' if 'system'
+  if (colorMode.value != "system") {
+    return colorMode.value;
+  }
 });
 
 const searchPlaceHolder = ref(locale.value === "fa" ? "جستجو…" : "Search...");
@@ -207,7 +208,7 @@ const childrenIcon = ref(
     ? "solar:alt-arrow-left-line-duotone"
     : "solar:alt-arrow-right-line-duotone"
 );
-const groups = [
+const groups = computed(() => [
   {
     id: "skills-box",
     items: [
@@ -240,7 +241,8 @@ const groups = [
             label: t(
               "pages.home.skills.programingLanguages.children.php.label"
             ),
-            icon: `skill-icons:php-${iconColorMode.value}`,
+            icon: "skill-icons:php-light",
+            iconDark: "skill-icons:php-dark",
             suffix: t(
               "pages.home.skills.programingLanguages.children.php.suffix"
             ),
@@ -250,7 +252,8 @@ const groups = [
             label: t(
               "pages.home.skills.programingLanguages.children.python.label"
             ),
-            icon: `skill-icons:python-${iconColorMode.value}`,
+            icon: "skill-icons:python-light",
+            iconDark: "skill-icons:python-dark",
             suffix: t(
               "pages.home.skills.programingLanguages.children.python.suffix"
             ),
@@ -268,7 +271,8 @@ const groups = [
             label: t(
               "pages.home.skills.programingLanguages.children.sql.label"
             ),
-            icon: `skill-icons:mysql-${iconColorMode.value}`,
+            icon: "skill-icons:mysql-light",
+            iconDark: "skill-icons:mysql-dark",
             suffix: t(
               "pages.home.skills.programingLanguages.children.sql.suffix"
             ),
@@ -299,7 +303,8 @@ const groups = [
             label: t(
               "pages.home.skills.programingLanguages.children.bash.label"
             ),
-            icon: `skill-icons:bash-${iconColorMode.value}`,
+            icon: "skill-icons:bash-light",
+            iconDark: "skill-icons:bash-dark",
             suffix: t(
               "pages.home.skills.programingLanguages.children.bash.suffix"
             ),
@@ -344,13 +349,15 @@ const groups = [
         children: [
           {
             label: t("pages.home.skills.frontEnd.children.vue.label"),
-            icon: `skill-icons:vuejs-${iconColorMode.value}`,
+            icon: "skill-icons:vuejs-light",
+            iconDark: "skill-icons:vuejs-dark",
             suffix: t("pages.home.skills.frontEnd.children.vue.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.frontEnd.children.nuxt.label"),
-            icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
+            icon: "skill-icons:nuxtjs-light",
+            iconDark: "skill-icons:nuxtjs-dark",
             suffix: t("pages.home.skills.frontEnd.children.nuxt.suffix"),
             kbds: ["0"],
           },
@@ -362,7 +369,8 @@ const groups = [
           },
           {
             label: t("pages.home.skills.frontEnd.children.pinia.label"),
-            icon: `skill-icons:pinia-${iconColorMode.value}`,
+            icon: "skill-icons:pinia-light",
+            iconDark: "skill-icons:pinia-dark",
             suffix: t("pages.home.skills.frontEnd.children.pinia.suffix"),
             kbds: ["0"],
           },
@@ -374,13 +382,15 @@ const groups = [
           },
           {
             label: t("pages.home.skills.frontEnd.children.vuetify.label"),
-            icon: `skill-icons:vuetify-${iconColorMode.value}`,
+            icon: "skill-icons:vuetify-light",
+            iconDark: "skill-icons:vuetify-dark",
             suffix: t("pages.home.skills.frontEnd.children.vuetify.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.frontEnd.children.nuxtUI.label"),
-            icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
+            icon: "skill-icons:nuxtjs-light",
+            iconDark: "skill-icons:nuxtjs-dark",
             suffix: t("pages.home.skills.frontEnd.children.nuxtUI.suffix"),
             kbds: ["0"],
           },
@@ -404,7 +414,8 @@ const groups = [
           },
           {
             label: t("pages.home.skills.frontEnd.children.tailwind.label"),
-            icon: `skill-icons:tailwindcss-${iconColorMode.value}`,
+            icon: "skill-icons:tailwindcss-light",
+            iconDark: "skill-icons:tailwindcss-dark",
             suffix: t("pages.home.skills.frontEnd.children.tailwind.suffix"),
             kbds: ["0"],
           },
@@ -423,31 +434,36 @@ const groups = [
         children: [
           {
             label: t("pages.home.skills.backEnd.children.node.label"),
-            icon: `skill-icons:nodejs-${iconColorMode.value}`,
+            icon: "skill-icons:nodejs-light",
+            iconDark: "skill-icons:nodejs-dark",
             suffix: t("pages.home.skills.backEnd.children.node.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.backEnd.children.express.label"),
-            icon: `skill-icons:expressjs-${iconColorMode.value}`,
+            icon: "skill-icons:expressjs-light",
+            iconDark: "skill-icons:expressjs-dark",
             suffix: t("pages.home.skills.backEnd.children.express.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.backEnd.children.nestjs.label"),
-            icon: `skill-icons:nestjs-${iconColorMode.value}`,
+            icon: "skill-icons:nestjs-light",
+            iconDark: "skill-icons:nestjs-dark",
             suffix: t("pages.home.skills.backEnd.children.nestjs.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.backEnd.children.laravel.label"),
-            icon: `skill-icons:laravel-${iconColorMode.value}`,
+            icon: "skill-icons:laravel-light",
+            iconDark: "skill-icons:laravel-dark",
             suffix: t("pages.home.skills.backEnd.children.laravel.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.backEnd.children.graphql.label"),
-            icon: `skill-icons:graphql-${iconColorMode.value}`,
+            icon: "skill-icons:graphql-light",
+            iconDark: "skill-icons:graphql-dark",
             suffix: t("pages.home.skills.backEnd.children.graphql.suffix"),
             kbds: ["0"],
           },
@@ -472,7 +488,8 @@ const groups = [
         children: [
           {
             label: t("pages.home.skills.databasesCaching.children.mysql.label"),
-            icon: `skill-icons:mysql-${iconColorMode.value}`,
+            icon: "skill-icons:mysql-light",
+            iconDark: "skill-icons:mysql-dark",
             suffix: t(
               "pages.home.skills.databasesCaching.children.mysql.suffix"
             ),
@@ -492,7 +509,8 @@ const groups = [
             label: t(
               "pages.home.skills.databasesCaching.children.postgresql.label"
             ),
-            icon: `skill-icons:postgresql-${iconColorMode.value}`,
+            icon: "skill-icons:postgresql-light",
+            iconDark: "skill-icons:postgresql-light",
             suffix: t(
               "pages.home.skills.databasesCaching.children.postgresql.suffix"
             ),
@@ -510,7 +528,8 @@ const groups = [
           },
           {
             label: t("pages.home.skills.databasesCaching.children.redis.label"),
-            icon: `skill-icons:redis-${iconColorMode.value}`,
+            icon: "skill-icons:redis-light",
+            iconDark: "skill-icons:redis-dark",
             suffix: t(
               "pages.home.skills.databasesCaching.children.redis.suffix"
             ),
@@ -557,7 +576,8 @@ const groups = [
             label: t(
               "pages.home.skills.ormDataTools.children.elasticsearch.label"
             ),
-            icon: `skill-icons:elasticsearch-${iconColorMode.value}`,
+            icon: "skill-icons:elasticsearch-light",
+            iconDark: "skill-icons:elasticsearch-dark",
             suffix: t(
               "pages.home.skills.ormDataTools.children.elasticsearch.suffix"
             ),
@@ -574,7 +594,8 @@ const groups = [
             label: t(
               "pages.home.skills.devopsInfrastructure.children.linux.label"
             ),
-            icon: `skill-icons:ubuntu-${iconColorMode.value}`,
+            icon: "skill-icons:ubuntu-light",
+            iconDark: "skill-icons:ubuntu-dark",
             suffix: t(
               "pages.home.skills.devopsInfrastructure.children.linux.suffix"
             ),
@@ -594,7 +615,8 @@ const groups = [
             label: t(
               "pages.home.skills.devopsInfrastructure.children.github.label"
             ),
-            icon: `skill-icons:github-${iconColorMode.value}`,
+            icon: "skill-icons:github-light",
+            iconDark: "skill-icons:github-dark",
             suffix: t(
               "pages.home.skills.devopsInfrastructure.children.github.suffix"
             ),
@@ -604,7 +626,8 @@ const groups = [
             label: t(
               "pages.home.skills.devopsInfrastructure.children.gitlab.label"
             ),
-            icon: `skill-icons:gitlab-${iconColorMode.value}`,
+            icon: "skill-icons:gitlab-light",
+            iconDark: "skill-icons:gitlab-dark",
             suffix: t(
               "pages.home.skills.devopsInfrastructure.children.gitlab.suffix"
             ),
@@ -664,7 +687,8 @@ const groups = [
             label: t(
               "pages.home.skills.devopsInfrastructure.children.cloud.label"
             ),
-            icon: `skill-icons:vercel-${iconColorMode.value}`,
+            icon: "skill-icons:vercel-light",
+            iconDark: "skill-icons:vercel-dark",
             suffix: t(
               "pages.home.skills.devopsInfrastructure.children.cloud.suffix"
             ),
@@ -818,7 +842,8 @@ const groups = [
             label: t(
               "pages.home.skills.testingCodeQuality.children.cypress.label"
             ),
-            icon: `skill-icons:cypress-${iconColorMode.value}`,
+            icon: "skill-icons:cypress-light",
+            iconDark: "skill-icons:cypress-dark",
             suffix: t(
               "pages.home.skills.testingCodeQuality.children.cypress.suffix"
             ),
@@ -909,13 +934,15 @@ const groups = [
           },
           {
             label: t("pages.home.skills.toolsUtilities.children.figma.label"),
-            icon: `skill-icons:figma-${iconColorMode.value}`,
+            icon: "skill-icons:figma-light",
+            iconDark: "skill-icons:figma-dark",
             suffix: t("pages.home.skills.toolsUtilities.children.figma.suffix"),
             kbds: ["0"],
           },
           {
             label: t("pages.home.skills.toolsUtilities.children.vite.label"),
-            icon: `skill-icons:vite-${iconColorMode.value}`,
+            icon: "skill-icons:vite-light",
+            iconDark: "skill-icons:vite-dark",
             suffix: t("pages.home.skills.toolsUtilities.children.vite.suffix"),
             kbds: ["0"],
           },
@@ -928,7 +955,8 @@ const groups = [
           },
           {
             label: t("pages.home.skills.toolsUtilities.children.webpack.label"),
-            icon: `skill-icons:webpack-${iconColorMode.value}`,
+            icon: "skill-icons:webpack-light",
+            iconDark: "skill-icons:webpack-dark",
             suffix: t(
               "pages.home.skills.toolsUtilities.children.webpack.suffix"
             ),
@@ -953,7 +981,7 @@ const groups = [
       {
         label: "portfolio-nuxt",
         suffix: "",
-        icon: `skill-icons:nuxtjs-${iconColorMode.value}`,
+        icon: "skill-icons:nuxtjs-light",
       },
       {
         label: "readme.md",
@@ -962,5 +990,5 @@ const groups = [
       },
     ],
   },
-];
+]);
 </script>

@@ -10,12 +10,13 @@
       >
         <li v-for="(item, index) in group" :key="index">
           <div class="flex flex-row gap-2 items-center">
-            <UBadge
-              :icon="item.icon"
-              size="md"
-              class="rounded-lg p-1 bg-accented text-toned"
-            ></UBadge>
-
+            <ClientOnly>
+              <UBadge
+                :icon="item.icon"
+                size="md"
+                class="rounded-lg p-1 bg-accented text-toned"
+              ></UBadge>
+            </ClientOnly>
             <template v-if="isLinkItem(item)">
               <a
                 :href="item.href"
