@@ -41,7 +41,8 @@ const colorMode = useColorMode();
 //BrandedLogo , Pergel , Frame , Nuxt , NuxtSeo , SimpleBlog , UnJs , Wave , WithEmoji
 defineOgImage({
   component: "Home",
-  renderer: "satori",
+  renderer: "chromium",
+
   props: {
     title: () => getSEOData().ogTitle,
     headline: getSEOData().siteName,
@@ -51,7 +52,8 @@ defineOgImage({
     siteUrl: () => baseUrl,
     locale: locale.value,
     dir: "rtl",
-    theme: "#ff0000", // generate screenshot of the MyCustomComponent component
+    email: t("pages.home.board.email-address"),
+    phone: t("pages.home.board.phone-number"),
   },
 });
 
@@ -66,7 +68,7 @@ useSeoMeta({
   ogLocale: locale.value === "fa" ? "fa_IR" : "en_US",
   ogUrl: `${baseUrl}/${locale.value}`,
   ogSiteName: () => getSEOData().siteName,
-  // ogImage: `${baseUrl}/images/og/og_home.png`,
+
   // Twitter/X (required - no OG fallback for card type)
   twitterCard: "summary_large_image",
 

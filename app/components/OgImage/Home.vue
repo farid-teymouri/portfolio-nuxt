@@ -9,6 +9,8 @@ const props = withDefaults(
     colorMode?: string;
     ogLocale?: string;
     siteUrl?: string;
+    email?: string;
+    phone?: string;
   }>(),
   {
     title: "title",
@@ -19,6 +21,8 @@ const props = withDefaults(
     siteName: "siteName",
     siteUrl: "siteUrl",
     ogLocale: "ogLocale",
+    email: "email",
+    phone: "phone",
   }
 );
 const reorder = (text: string) =>
@@ -29,12 +33,21 @@ const description = computed(() => (props.description || "").slice(0, 200));
 </script>
 <template>
   <div
-    class="w-full h-full flex flex-col justify-center bg-[#06060b] border border-red-500"
+    style="
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      background-color: #06060b;
+      position: relative;
+    "
+    :style="isRTL ? 'direction: rtl;' : 'direction: ltr;'"
   >
     <svg
-      class="absolute right-0 top-0"
-      :class="{ 'left-0': isRTL, 'right-0': !isRTL }"
-      :transform="isRTL ? 'scale(-1,1) translate(-629,0)' : undefined"
+      style="position: absolute; top: 0"
+      :style="isRTL ? 'left: 0px;' : 'right: 0;'"
+      :transform="isRTL ? 'scale(-1,1)' : undefined"
       width="629"
       height="593"
       viewBox="0 0 629 593"
@@ -73,8 +86,8 @@ const description = computed(() => (props.description || "").slice(0, 200));
     </svg>
 
     <svg
-      class="absolute top-40"
-      :class="{ 'left-22.5': isRTL, 'right-22.5': !isRTL }"
+      style="position: absolute; top: 160px"
+      :style="isRTL ? 'left: 90px;' : 'right: 90px;'"
       width="340"
       height="340"
       viewBox="0 0 340 340"
@@ -525,31 +538,100 @@ const description = computed(() => (props.description || "").slice(0, 200));
     </svg>
 
     <div
-      class="w-full pl-25 flex border border-amber-100 relative"
-      :class="{ 'flex-row': !isRTL, 'flex-row-reverse': isRTL }"
+      style="
+        width: 720px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        justify-content: center;
+        justify-items: center;
+        position: relative;
+      "
+      :style="isRTL ? 'padding-right: 50px;' : 'padding-left: 50px;'"
     >
-      <div dir="rtl" class="flex flex-col w-180 border border-red-500">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          color: #ededed;
+        "
+      >
         <p
           v-if="headline"
-          class="flex w-full text-[18px] mb-4 text-[#4cc9f0]"
-          :class="{ 'flex-row': !isRTL, 'flex-row-reverse': isRTL }"
+          style="
+            display: block;
+            color: #4cc9f0;
+            font-size: 22px;
+            margin-bottom: 15px;
+          "
         >
-          {{ reorder(headline) }}
+          {{ headline }}
         </p>
         <h1
           v-if="title"
-          class="flex w-full text-[28px] mb-4 text-white"
-          :class="{ 'flex-row': !isRTL, 'flex-row-reverse': isRTL }"
+          style="
+            display: block;
+            color: #ededed;
+            font-size: 37px;
+            margin-bottom: 35px;
+          "
         >
-          {{ reorder(title) }}
+          {{ title }}
         </h1>
         <p
           v-if="description"
-          class="text-[12px] text-[#E4E4E7] leading-tight"
-          :class="{ 'flex-row': !isRTL, 'flex-row-reverse': isRTL }"
+          style="display: block; color: #ededed; font-size: 25px"
         >
-          {{ reorder(title) }}
+          {{ description }}
         </p>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        color: #ededed;
+        padding: 10px;
+        gap: 70px;
+        justify-items: center;
+      "
+      :style="isRTL ? 'padding-right: 50px;' : 'padding-left: 50px;'"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          color: #ededed;
+          gap: 10px;
+          justify-items: center;
+          align-items: center;
+        "
+      >
+        <UIcon
+          name="si:mail-duotone"
+          style="width: 30px; height: 30px; text-align: center; color: #4cc9f0"
+        />
+        <div lang="en" dir="ltr" style="font-size: 25px">{{ email }}</div>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          color: #ededed;
+          gap: 10px;
+          justify-items: center;
+          align-items: center;
+        "
+      >
+        <UIcon
+          name="si:phone-duotone"
+          style="width: 30px; height: 30px; text-align: center; color: #4cc9f0"
+        />
+        <div lang="en" dir="ltr" style="font-size: 25px">
+          (+98) - 935-225-2502
+        </div>
       </div>
     </div>
   </div>

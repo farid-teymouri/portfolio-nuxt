@@ -8,8 +8,9 @@ export default defineNuxtConfig({
     ).trim(),
   },
   ogImage: {
-    enabled: true,
-    zeroRuntime: false,
+    defaults: {
+      renderer: "chromium",
+    },
     fonts: [
       {
         name: "Shabnam",
