@@ -145,11 +145,11 @@ const osOptions = {
         root: '',
         container: 'flex flex-col sm:gap-y-3 lg:gap-y-2 gap-y-4',
         indicator:
-          'absolute hidden lg:block inset-y-3 start-4 h-full w-px -ms-[8.5px]',
+          'absolute hidden lg:block inset-y-3 start-4 h-90 bg-primary w-px -ms-[8.5px]',
         beam: 'max-w-1.5',
       }"
       :indicator="true"
-      :indicatorMotion="true"
+      :indicatorMotion="false"
     >
       <!-- Custom title slot with SHA -->
       <template #header="{ version }">
