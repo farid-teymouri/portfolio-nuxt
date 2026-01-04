@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "nuxt-og-image",
     "nuxt-icon",
+    "nuxt-anchorscroll",
   ],
   icon: {
     provider: "server", // 👈 critical: disables external API

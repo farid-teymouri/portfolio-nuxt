@@ -52,18 +52,7 @@
           class="w-full flex md:flex-row flex-wrap gap-2 justify-start items-center text-start"
           v-if="!item.children"
         >
-          <div class="w-fit flex flex-row justify-start items-center gap-2">
-            <!-- Pass iconColorMode down -->
-            <IconWithColorMode :item="item" :iconColorMode="iconColorMode" />
-
-            <div
-              class="w-fit rounded-md px-1 py-0.5 bg-accented/35 font-normal lg:text-md text-sm font-sans text-nowrap"
-            >
-              {{ item.label }}
-            </div>
-          </div>
-
-          <div class="text-sm text-muted">{{ item.suffix }}</div>
+          <ItemWithColorMode :item="item" :iconColorMode="iconColorMode" />
         </div>
       </template>
       <template #footer>
