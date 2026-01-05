@@ -78,6 +78,8 @@ const { scrollToTop } = useAnchorScroll({
   </div>
   <slot />
 
+  <Footer />
+
   <Transition name="fade">
     <motion.div
       v-if="isVisible"

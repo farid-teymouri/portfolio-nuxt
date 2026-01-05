@@ -1,0 +1,27 @@
+# faridteymouri.vercel.app
+
+> Personal Portfolio & Professional Profile  
+This site showcases Farid Teymouri’s 16+ years of expertise in software engineering, DevOps, web security, and full-stack development — with a focus on Laravel, Nuxt.js, secure architectures, and custom web solutions.
+
+## Main Content
+[About](https://faridteymouri.vercel.app/): Overview of professional background, technical skills, and career journey from security researcher to full-stack developer.
+
+[Experience](https://faridteymouri.vercel.app/#about): Detailed timeline of roles in penetration testing groups, freelance projects, and a 3-year personal Laravel-Nuxt initiative.
+
+[Skills](https://faridteymouri.vercel.app/#skills): Comprehensive list of technical competencies including Laravel, Nuxt.js, SQL Server, API design, WHMCS development, DevOps, and web hardening.
+
+[Projects](https://faridteymouri.vercel.app/projects): Highlights of key contributions including SQL Server optimizations for 'holoo' accounting software, WHMCS modules, custom CMS development, and security implementations.
+
+[Blog](https://faridteymouri.vercel.app/blog): Educational articles, technical guides, and updates on open-source tools, web security practices, and modern development workflows.
+
+[Contact](https://faridteymouri.vercel.app/): Professional inquiry point for collaboration, consulting, or technical discussions.
+
+## Optional Content
+[DevOps & Security](https://faridteymouri.vercel.app/): Insights into server hardening, firewall configuration, secure deployment pipelines, and defensive architecture.
+
+[Laravel & Nuxt Stack](https://faridteymouri.vercel.app/): Technical deep dive into the personal full-stack project built with Laravel (backend) and Nuxt.js (frontend).
+
+## Contact
+[Email](mailto:farid@teymouri.ir): For professional inquiries, project collaboration, or technical discussions.
+[Telegram](https://t.me/faridteymouri): Direct message via Telegram (@faridteymouri).
+[WhatsApp](https://wa.me/989352252502): Chat via WhatsApp (+98 935 225 2502).

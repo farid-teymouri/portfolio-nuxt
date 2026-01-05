@@ -5,7 +5,9 @@ import { useRoute } from "#app";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
-
+const config = useRuntimeConfig();
+const url = useRequestURL();
+const baseUrl = config.public?.baseUrl || url.origin;
 const route = useRoute();
 
 const navigationItems = computed<NavigationMenuItem[]>(() => {
@@ -28,7 +30,7 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
       {
         label: t("nav.about"),
         icon: "lets-icons:user-scan-duotone",
-        to: "#about",
+        to: localePath("/#about"),
         active: false,
         onSelect: (e: Event) => {
           emit("click");
@@ -46,7 +48,7 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
       {
         label: t("nav.skills"),
         icon: "lets-icons:layers-duotone",
-        to: "#skills",
+        to: localePath("/#skills"),
         active: currentPath.startsWith(localePath("/services")),
         onSelect: (e: Event) => {
           emit("click");

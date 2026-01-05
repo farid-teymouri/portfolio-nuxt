@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useLocalePath } from "#imports";
-
-const localePath = useLocalePath();
-
 interface Props {
   width?: number;
   height?: number;
