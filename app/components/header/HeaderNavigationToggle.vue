@@ -1,7 +1,6 @@
 <template>
   <motion.button
-    :whileHover="{ scale: 1.1 }"
-    :whilePress="{ scale: 0.7 }"
+    :while-press="{ scale: 0.9 }"
     @press="handleClick"
     class="group w-10 rounded-md block h-full p-0 text-muted cursor-pointer hover:text-highlighted hover:bg-elevated/70 bg-elevated focus:bg-elevated focus:ring-transparent focus:right-0 active:bg-elevated transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/5"
     size="xl"
@@ -20,7 +19,6 @@
 <script setup lang="ts">
 import { motion } from "motion-v";
 
-// تعریف props
 defineProps<{
   isOpen?: boolean;
 }>();

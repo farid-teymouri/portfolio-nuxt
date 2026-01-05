@@ -2,7 +2,6 @@
 import type { NavigationMenuItem } from "@nuxt/ui";
 import { useI18n, useLocalePath } from "#imports";
 import { useRoute } from "#app";
-import { useRuntimeConfig } from "#imports";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -107,8 +106,8 @@ const emit = defineEmits(["click"]);
     trailing-icon="i-lucide-arrow-down"
     :ui="{
       item: 'lg:mx-1  py-1 lg:w-fit w-full',
-      link: 'lg:px-2 lg:py-1.5 py-3 hover:bg-elevated rounded-md',
-      list: 'lg:flex-row flex-col lg:items-center items-start divide-y lg:divide-transparent divide-muted',
+      link: 'lg:px-2 lg:py-1.5 py-2.5 hover:bg-elevated rounded-md',
+      list: 'lg:flex-row flex-col lg:items-center items-start divide-y lg:divide-transparent divide-muted/50',
     }"
   />
 </template>

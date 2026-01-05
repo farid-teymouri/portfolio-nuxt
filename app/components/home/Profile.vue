@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-around">
+  <section class="flex flex-row justify-around">
     <div
       class="border-x border-dashed border-muted/80 lg:max-w-33 md:max-w-30 max-w-25 w-full flex flex-col items-center justify-center"
     >
@@ -65,7 +65,7 @@
         }}</span>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";

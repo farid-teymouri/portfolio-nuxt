@@ -32,6 +32,9 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-anchorscroll",
   ],
+  anchorscroll: {
+    hooks: ["page:transition:finish"],
+  },
   icon: {
     provider: "server", // 👈 critical: disables external API
     mode: "css",

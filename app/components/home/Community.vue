@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="sm:bg-linear border-x border-dashed border-muted flex sm:flex-row flex-col gap-4 justify-between"
   >
     <ul
@@ -93,7 +93,7 @@
         </ULink>
       </motion.li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

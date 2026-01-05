@@ -1,5 +1,5 @@
 <template>
-  <div class="border-x border-dashed border-muted/80">
+  <section class="border-x border-dashed border-muted/80">
     <div
       class="p-2.5 flex lg:flex-row lg:gap-8 gap-2 flex-col items-start w-full"
     >
@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

@@ -9,7 +9,7 @@
       class="relative flex w-full h-full overflow-hidden bg-prodots"
     >
       <svg
-        class="absolute sm:-top-14 lg:block hidden left-1/2 transform -translate-x-1/2 w-512 h-78 z-0"
+        class="absolute sm:-top-10 lg:block hidden left-1/2 transform -translate-x-1/2 w-512 h-78 z-0"
         viewBox="0 0 1252 430 "
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

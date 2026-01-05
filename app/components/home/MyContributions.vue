@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="flex xl:flex-row gap-4 flex-col xl:justify-start justify-between border-x border-dashed border-muted/80"
   >
     <div
@@ -12,7 +12,7 @@
     >
       <GithubCommits />
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

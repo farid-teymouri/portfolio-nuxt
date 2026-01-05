@@ -1,5 +1,5 @@
 <template>
-  <div :dir="dir" class="py-2 ltr:font-sans">
+  <div :dir="dir" class="pb-2 ltr:font-sans">
     <UApp>
       <NuxtLayout>
         <NuxtPage />

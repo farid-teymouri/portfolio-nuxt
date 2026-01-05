@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     id="skills"
     class="flex flex-col p-4 border-x border-dashed border-muted/80 relative"
   >
@@ -165,7 +165,7 @@
         </div>
       </template>
     </UCommandPalette>
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 const { t } = useI18n();
@@ -174,10 +174,6 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 
 const dir = computed(() => (locale.value === "fa" ? "rtl" : "ltr"));
-
-const route = useRoute();
-
-const toast = useToast();
 
 const colorMode = useColorMode();
 // Fallback to 'light' during SSR or loading
