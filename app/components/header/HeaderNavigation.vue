@@ -39,8 +39,8 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
       {
         label: t("nav.projects"),
         icon: "lets-icons:3d-box-duotone",
-        to: localePath("/projects"),
-        active: currentPath.startsWith(localePath("/projects")),
+        // to: localePath("/projects"),
+        // active: currentPath.startsWith(localePath("/projects")),
         onSelect: (e: Event) => {
           emit("click");
         },
@@ -49,7 +49,7 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
         label: t("nav.skills"),
         icon: "lets-icons:layers-duotone",
         to: localePath("/#skills"),
-        active: currentPath.startsWith(localePath("/services")),
+        // active: currentPath.startsWith(localePath("/services")),
         onSelect: (e: Event) => {
           emit("click");
         },
@@ -57,8 +57,8 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
       {
         label: t("nav.blog"),
         icon: "fa7-solid:blog",
-        to: localePath("/blog"),
-        active: currentPath.startsWith(localePath("/blog")),
+        // to: localePath("/blog"),
+        // active: currentPath.startsWith(localePath("/blog")),
         onSelect: (e: Event) => {
           emit("click");
         },

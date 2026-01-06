@@ -59,8 +59,8 @@
         <div
           class="flex flex-row w-full items-center justify-between gap-2 bg-dots"
         >
+          <!-- :to="localePath('/blog')" -->
           <ULink
-            :to="localePath('/blog')"
             target="_blank"
             variant="ghost"
             class="text-dimmed hover:text-primary cursor-pointer flex flex-row gap-0.5 items-center justify-center content-center dark:bg-elevated bg-elevated px-2"

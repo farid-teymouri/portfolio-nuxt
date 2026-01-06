@@ -12,34 +12,36 @@
   >
     <template #left>
       <p class="text-muted text-sm w-fit">
-        Copyright © {{ new Date().getFullYear() }} - Inspired by
+        {{ $t("footer.copyright", { year: new Date().getFullYear() }) }}
+
         <ULink
           to="https://tailwindcss.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="mx-px hover:text-primary text-primary/70"
+          class="mx-px hover:text-primary dark:text-primary/70 text-primary/85"
         >
           Tailwind CSS
         </ULink>
-        &
+        {{ $t("footer.&") }}
         <ULink
           to="https://ui.nuxt.com/"
           target="_blank"
           rel="noopener noreferrer"
-          class="mx-px hover:text-primary text-primary/70"
+          class="mx-px hover:text-primary dark:text-primary/70 text-primary/85"
         >
           Nuxt UI
         </ULink>
       </p>
       <p class="text-muted text-sm w-fit">
-        Built by
+        {{ $t("footer.builtBy") }}
         <ULink
           to="https://github.com/farid-teymouri"
           target="_blank"
           rel="noopener"
-          class="mx-px hover:text-pink-400 text-pink-400/70"
-          >farid teymouri</ULink
+          class="mx-px dark:hover:text-pink-400 dark:text-pink-400/70 hover:text-rose-600 text-rose-500"
         >
+          {{ $t("seo.developer") }}
+        </ULink>
       </p>
     </template>
     <template #right>
@@ -59,9 +61,10 @@
 
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
-import { useLocalePath } from "#imports";
-
+import { useLocalePath, useI18n } from "#imports";
 const localePath = useLocalePath();
+const { t } = useI18n();
+
 const config = useRuntimeConfig();
 const url = useRequestURL();
 const baseUrl = config.public?.baseUrl || url.origin;

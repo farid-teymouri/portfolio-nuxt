@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     url: (
       process.env.NUXT_PUBLIC_SITE_URL || "https://faridteymouri.vercel.app"
     ).trim(),
+    name: "Farid Teymouri",
   },
+
   ogImage: {
     defaults: {
       renderer: "chromium",
@@ -66,5 +68,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     GITHUB_TOKEN: process.env.GITHUB_TOKEN || "NOT TOKEN",
+    public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || "https://yourdomain.com",
+    },
   },
 });

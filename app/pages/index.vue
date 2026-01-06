@@ -12,6 +12,7 @@ import Skills from "~/components/home/Skills.vue";
 
 const { t, locale } = useI18n();
 const config = useRuntimeConfig();
+const localePath = useLocalePath();
 
 interface SEOData {
   title: string;
@@ -69,78 +70,85 @@ useSeoMeta({
   ogUrl: `${baseUrl}/${locale.value}`,
   ogSiteName: () => getSEOData().siteName,
 
-  // Twitter/X (required - no OG fallback for card type)
+  // Twitter/X Card
+
   twitterCard: "summary_large_image",
+  twitterTitle: () => getSEOData().ogTitle,
+  twitterDescription: () => getSEOData().ogDescription,
+  twitterSite: "@faridteimori",
+  twitterCreator: "@faridteimori",
+  twitterImage: () =>
+    `${baseUrl}/__og-image__/image${locale.value === "fa" ? "/fa" : ""}/og.png`,
+
+  // App & Mobile
+  applicationName: () => getSEOData().siteName,
+  themeColor: () => (colorMode.value === "dark" ? "#4cc9f0" : "#254074"),
+  colorScheme: "dark light",
+  viewport: "width=device-width, initial-scale=1",
 
   robots:
     "index, follow, max-snippet:55, max-image-preview:standard, max-video-preview:-1",
 });
 
-useHead({
-  title: () => getSEOData().title,
-  titleTemplate: () => getSEOData().siteName,
-  // meta: [
-  //   { name: "description", content: () => getSEOData().description },
-  //   { property: "og:title", content: () => getSEOData().ogTitle },
-  //   { property: "og:description", content: () => getSEOData().ogDescription },
-  //   { property: "og:type", content: "website" },
-  //   {
-  //     property: "og:locale",
-  //     content: () => (locale.value === "fa" ? "fa_IR" : "en_US"),
-  //   },
-  //   {
-  //     property: "og:url",
-  //     content: () => `${baseUrl}/${locale.value}`,
-  //   },
-  //   {
-  //     property: "og:site_name",
-  //     content: () => getSEOData().siteName,
-  //   },
-  //   { name: "twitter:card", content: "summary_large_image" },
-  //   { name: "twitter:title", content: () => getSEOData().ogTitle },
-  //   { name: "twitter:description", content: () => getSEOData().ogDescription },
-  //   { name: "robots", content: "index, follow" },
-  //   { name: "author", content: () => developerName.value },
-  //   { name: "keywords", content: () => getSEOData().keywords },
-  // ],
-  // link: [
-  //   {
-  //     rel: "canonical",
-  //     href: () => `${baseUrl}/${locale.value}`,
-  //   },
-  //   {
-  //     rel: "alternate",
-  //     hreflang: "fa",
-  //     href: () => `${baseUrl}/fa`,
-  //   },
-  //   {
-  //     rel: "alternate",
-  //     hreflang: "en",
-  //     href: () => `${baseUrl}/en`,
-  //   },
-  // ],
-  // script: [
-  //   {
-  //     type: "application/ld+json",
-  //     innerHTML: () =>
-  //       JSON.stringify({
-  //         "@context": "https://schema.org",
-  //         "@type": "WebSite",
-  //         name: getSEOData().title,
-  //         description: getSEOData().description,
-  //         author: {
-  //           "@type": "Person",
-  //           name: developerName.value,
-  //         },
-  //         url: `${baseUrl}/${locale.value}`,
-  //         potentialAction: {
-  //           "@type": "ReadAction",
-  //           target: `${baseUrl}/${locale.value}`,
-  //         },
-  //       }),
-  //   },
-  // ],
-});
+// useHead({
+//   // title: () => getSEOData().title,
+//   // titleTemplate: () => getSEOData().siteName,
+//   link: [
+//     {
+//       rel: "canonical",
+//       href: () => `${baseUrl}/${locale.value}`,
+//     },
+//     {
+//       rel: "alternate",
+//       hreflang: "fa",
+//       href: () => `${baseUrl}/fa`,
+//     },
+//     {
+//       rel: "alternate",
+//       hreflang: "en",
+//       href: () => `${baseUrl}/en`,
+//     },
+//   ],
+// });
+useSchemaOrg([
+  definePerson({
+    name: developerName.value, // "Farid Teymouri"
+    url: baseUrl,
+    sameAs: [
+      "https://github.com/farid-teymouri",
+      "https://linkedin.com/in/farid-teymouri",
+      "https://x.com/faridteimouri",
+      "https://t.me/faridteymouri",
+    ],
+    jobTitle: getSEOData().ogTitle,
+    description: getSEOData().ogDescription,
+  }),
+  defineWebSite({
+    name: getSEOData().siteName,
+    url: baseUrl,
+    description: getSEOData().description,
+    inLanguage: locale.value === "fa" ? "fa-IR" : "en-US",
+    publisher: definePerson({
+      name: developerName.value,
+      url: baseUrl,
+    }),
+    // datePublished: "2026-01-10",
+    // potentialAction: defineSearchAction({
+    //   target: `${baseUrl}/search?q={search_term_string}`,
+    //   "query-input": "required name=search_term_string",
+    // }),
+  }),
+  defineWebPage({
+    name: getSEOData().title,
+    description: getSEOData().description,
+    url: localePath("/"),
+    inLanguage: locale.value === "fa" ? "fa-IR" : "en-US",
+    isPartOf: defineWebSite({ url: baseUrl }),
+    primaryEntity: definePerson({ name: developerName.value, url: baseUrl }),
+    // datePublished: "2020-01-10",
+    // dateModified: new Date().toISOString().split("T")[0],
+  }),
+]);
 </script>
 <template>
   <div class="border-b border-dashed border-muted md:px-10 px-2">

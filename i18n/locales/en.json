@@ -1,6 +1,6 @@
 {
   "seo": {
-    "siteName": "Portfolio farid teymouri",
+    "siteName": "Farid Teymouri",
     "developer": "farid teymouri",
     "og": {
       "title": "Software Engineer & DevOps Specialist",
@@ -488,5 +488,10 @@
         "private": "Private"
       }
     }
+  },
+  "footer": {
+    "copyright": "Copyright © { year } - Inspired by",
+    "builtBy": "Built by",
+    "&": "&"
   }
 }
