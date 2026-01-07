@@ -89,7 +89,14 @@ useSeoMeta({
   robots:
     "index, follow, max-snippet:55, max-image-preview:standard, max-video-preview:-1",
 });
-
+useHead({
+  meta: [
+    {
+      name: "google-site-verification",
+      content: "wwUkHCOoby7uyNDQcctFYMWO-IHieFeW9DT-ikFBp3g",
+    },
+  ],
+});
 // useHead({
 //   // title: () => getSEOData().title,
 //   // titleTemplate: () => getSEOData().siteName,
