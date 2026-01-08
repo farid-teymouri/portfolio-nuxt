@@ -54,7 +54,7 @@
         "time-country": "(Tehran)"
       },
       "profile": {
-        "short-bio": "I am farid teymouri, a cybersecurity specialist and software and web developer, who started my career in 2009.",
+        "short-bio": "I am Farid Teymouri, a software and web developer, penetration testing and server/site security specialist, who began my professional career in 1388 (2009).",
         "avatar-alt": "profile photo",
         "profile-name": "Farid Teymouri",
         "sentences-1": "Full Stack Developer with DevOps Focus",
@@ -72,9 +72,9 @@
         "item-2": "Proficient in Laravel, Nuxt.js, SQL Server, API development, CMS design, WHMCS modules, and firewall configurations; delivering scalable, secure applications for diverse projects.",
         "item-3": "Dedicated to exploring innovative technologies and transforming concepts into efficient solutions through independent and collaborative initiatives.",
         "item-4": "Between 2009 and 2012, I began my career as a firewall and penetration testing specialist, actively participating in various websites and online communities. During this period, I published numerous penetration testing scripts and exploits, with a primary focus on enhancing the security of servers and websites.",
-        "item-5": "Software Developer for Various Companies and Projects (April 2013 - April 2021): Contributed to accounting software 'holoo' with SQL Server optimizations and API updates; transitioned to freelance short-term projects including CMS plugins, custom CMS designs, and WHMCS modules, focusing on web development.",
-        "item-6": "Software Developer at Maral Host Web Hosting (April 2020 - April 2022): Completed three web-focused projects, including CMS development and WHMCS modules; earned an official employer satisfaction certificate.",
-        "item-7": "Creator of Personal Laravel-Nuxt Project (April 2022 - January 2026): I have dedicated over three years to developing my personal, comprehensive project, significantly enhancing my technical and managerial skills. Due to insufficient funding, the project’s launch has been delayed."
+        "item-5": "Software Developer for Various Companies and Projects (2013 - 2021): Contributed to accounting software 'holoo' with SQL Server optimizations and API updates; transitioned to freelance short-term projects including CMS plugins, custom CMS designs, and WHMCS modules, focusing on web development.",
+        "item-6": "Software Developer at Maral Host Web Hosting (2020 - 2022): Completed three web-focused projects, including CMS development and WHMCS modules; earned an official employer satisfaction certificate.",
+        "item-7": "Creator of Personal Laravel-Nuxt Project (2022 - 2026): I have dedicated over three years to developing my personal, comprehensive project, significantly enhancing my technical and managerial skills. Due to insufficient funding, the project’s launch has been delayed."
       },
       "skills": {
         "header": "skills",

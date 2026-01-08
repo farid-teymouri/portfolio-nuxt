@@ -9,7 +9,7 @@ const config = useRuntimeConfig();
 const url = useRequestURL();
 const baseUrl = config.public?.baseUrl || url.origin;
 const route = useRoute();
-
+const { locale } = useI18n();
 const navigationItems = computed<NavigationMenuItem[]>(() => {
   const currentPath = route.fullPath;
 
@@ -81,11 +81,21 @@ const navigationItems = computed<NavigationMenuItem[]>(() => {
           "ring-primary/50 ring-1 rounded-lg cursor-pointer text-muted lg:text-center text-center lg:mt-0 mt-4 lg:w-fit w-[240] mx-auto",
         variant: "outline",
         onSelect: (e: Event) => {
+          const filename =
+            locale.value === "fa"
+              ? "faridteymouri-cv-fa.pdf"
+              : "faridteymouri-cv-en.pdf";
+
           const link = document.createElement("a");
-          link.href = "/faridteymouri-cv.pdf";
-          link.download = "faridteymouri-cv.pdf";
-          link.target = "_blank";
+          link.href = `${baseUrl}/resume/${filename}`;
+          link.download = filename; // just the filename, not the full URL
+          // Do NOT set target="_blank" when using download — it can prevent the download in some browsers
+          // link.target = "_blank"; // ← remove this
+
+          // Trigger download
+
           link.click();
+
           emit("click");
         },
       },

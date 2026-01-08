@@ -8,7 +8,17 @@ export default defineNuxtConfig({
     ).trim(),
     name: "Farid Teymouri",
   },
-
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/i18n",
+    "@nuxt/image",
+    "motion-v/nuxt",
+    "@nuxtjs/seo",
+    "nuxt-og-image",
+    "nuxt-icon",
+    "nuxt-anchorscroll",
+    "nuxt-link-checker",
+  ],
   ogImage: {
     defaults: {
       renderer: "chromium",
@@ -24,16 +34,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: [
-    "@nuxt/ui",
-    "@nuxtjs/i18n",
-    "@nuxt/image",
-    "motion-v/nuxt",
-    "@nuxtjs/seo",
-    "nuxt-og-image",
-    "nuxt-icon",
-    "nuxt-anchorscroll",
-  ],
+
   anchorscroll: {
     hooks: ["page:transition:finish"],
   },
@@ -69,7 +70,19 @@ export default defineNuxtConfig({
   runtimeConfig: {
     GITHUB_TOKEN: process.env.GITHUB_TOKEN || "NOT TOKEN",
     public: {
-      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || "https://yourdomain.com",
+      baseUrl:
+        process.env.NODE_ENV === "production"
+          ? "https://faridteymouri.vercel.app" // ← دامنه واقعی سایتت رو اینجا بنویس
+          : "http://localhost:3000",
+    },
+  },
+  linkChecker: {
+    failOnError: true,
+    report: {
+      // pick and choose which reports you want to generate
+      html: true,
+      markdown: true,
+      json: true,
     },
   },
 });
